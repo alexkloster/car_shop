@@ -1,0 +1,15 @@
+car_shop_db	public	users	car_shop_db	public	users_pk
+car_shop_db	public	engine	car_shop_db	public	engine_pk
+car_shop_db	public	manufacture	car_shop_db	public	manufacture_pk
+car_shop_db	public	vehicle_type	car_shop_db	public	vehicle_type_pk
+car_shop_db	public	model	car_shop_db	public	model_pk
+car_shop_db	public	manufacture	car_shop_db	public	manufacture_fk
+car_shop_db	public	vehicle_type	car_shop_db	public	vehicle_type_fk
+car_shop_db	public	auto	car_shop_db	public	auto_pk
+car_shop_db	public	model	car_shop_db	public	model_fk
+car_shop_db	public	engine	car_shop_db	public	engine_fr
+car_shop_db	public	client	car_shop_db	public	client_pk
+car_shop_db	public	orders	car_shop_db	public	order_pk
+car_shop_db	public	auto	car_shop_db	public	auto_fk
+car_shop_db	public	client	car_shop_db	public	client_fk
+car_shop_db	public	users	car_shop_db	public	users_fk

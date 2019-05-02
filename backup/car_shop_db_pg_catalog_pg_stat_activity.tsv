@@ -1,0 +1,1 @@
+299579	car_shop_db	16048	10	postgres	SELECT t.* FROM pg_catalog.pg_stat_activity t	false	2019-05-02 21:48:04.611000	2019-05-02 21:48:04.612000	2019-05-02 21:48:04.590000	127.0.0.1	61729

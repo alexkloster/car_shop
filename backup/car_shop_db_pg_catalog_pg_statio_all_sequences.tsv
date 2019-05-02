@@ -1,0 +1,13 @@
+299875	public	manufacture_id_seq	2	4
+299883	public	vehicle_type_id_seq	2	4
+299891	public	model_id_seq	2	4
+299909	public	auto_id_seq	2	4
+299911	public	auto_model_id_seq	2	3
+299858	public	users_id_seq	2	5
+299867	public	engine_id_seq	2	4
+299913	public	auto_engine_id_seq	2	3
+299933	public	client_id_seq	2	4
+299941	public	order_id_seq	2	4
+299943	public	order_auto_id_seq	2	3
+299945	public	order_client_id_seq	2	3
+299947	public	order_user_id_seq	2	3

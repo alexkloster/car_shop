@@ -1,0 +1,65 @@
+2607	pg_catalog	pg_conversion	3	6	0	0				
+2328	pg_catalog	pg_foreign_data_wrapper	0	0	0	0				
+2834	pg_toast	pg_toast_2609	0	0	0	0				
+1259	pg_catalog	pg_class	18	80608	14	54760				
+2753	pg_catalog	pg_opfamily	1	2	0	0				
+2616	pg_catalog	pg_opclass	4	6427	8	2632				
+1261	pg_catalog	pg_auth_members	0	0	1	1				
+2617	pg_catalog	pg_operator	26	18438	18	13832				
+2836	pg_toast	pg_toast_1255	0	0	0	0				
+11449	pg_toast	pg_toast_11447	0	0	0	0				
+1249	pg_catalog	pg_attribute	92	45049	24	85760				
+3601	pg_catalog	pg_ts_parser	2	2	0	0				
+11464	pg_toast	pg_toast_11462	0	0	0	0				
+2619	pg_catalog	pg_statistic	35	6240	4	9297	10	332	4	521
+2604	pg_catalog	pg_attrdef	2	828	6	44986	0	0	0	0
+1213	pg_catalog	pg_tablespace	2	479	2	1				
+2600	pg_catalog	pg_aggregate	2	7	4	10				
+2611	pg_catalog	pg_inherits	0	0	1	41				
+3501	pg_catalog	pg_enum	0	0	0	0				
+2606	pg_catalog	pg_constraint	6	2762	12	4488	0	0	0	0
+2620	pg_catalog	pg_trigger	6	4596	10	6096				
+2846	pg_toast	pg_toast_2396	0	0	0	0				
+11469	pg_toast	pg_toast_11467	0	0	0	0				
+1136	pg_catalog	pg_pltemplate	1	0	0	0				
+3602	pg_catalog	pg_ts_config	2	2	0	0				
+2838	pg_toast	pg_toast_2618	50	1887	4	1510				
+2605	pg_catalog	pg_cast	4	3735	4	31089				
+2602	pg_catalog	pg_amop	6	11212	12	15979				
+11452	information_schema	sql_implementation_info	1	0			0	0	0	0
+11459	pg_toast	pg_toast_11457	0	0	0	0				
+11479	pg_toast	pg_toast_11477	0	0	0	0				
+1418	pg_catalog	pg_user_mapping	0	0	0	0				
+1247	pg_catalog	pg_type	18	49504	14	64533				
+2832	pg_toast	pg_toast_2606	0	0	0	0				
+2613	pg_catalog	pg_largeobject	0	0	0	0				
+1262	pg_catalog	pg_database	3	48016	10	53548	0	0	0	0
+2601	pg_catalog	pg_am	2	2423	2	2092				
+3603	pg_catalog	pg_ts_config_map	2	0	0	0				
+1260	pg_catalog	pg_authid	0	15831	16	22456	0	0	0	0
+11454	pg_toast	pg_toast_11452	0	0	0	0				
+2842	pg_toast	pg_toast_1260	0	0	0	0				
+3764	pg_catalog	pg_ts_template	2	2	0	0				
+2615	pg_catalog	pg_namespace	2	59700	8	5467				
+1255	pg_catalog	pg_proc	108	272840	68	470394	0	0	0	0
+1417	pg_catalog	pg_foreign_server	0	0	0	0				
+2840	pg_toast	pg_toast_2619	10	332	4	521				
+11472	information_schema	sql_sizing	1	0			0	0	0	0
+11474	pg_toast	pg_toast_11472	0	0	0	0				
+11477	information_schema	sql_sizing_profiles	0	0			0	0	0	0
+11467	information_schema	sql_parts	1	0			0	0	0	0
+2609	pg_catalog	pg_description	42	82361	21	274892	0	0	0	0
+2614	pg_catalog	pg_listener	0	0						
+2608	pg_catalog	pg_depend	89	11915	29	11958				
+2612	pg_catalog	pg_language	2	54296	0	0				
+1214	pg_catalog	pg_shdepend	2	73	4	386				
+11462	information_schema	sql_packages	1	0			0	0	0	0
+11457	information_schema	sql_languages	1	0			0	0	0	0
+2844	pg_toast	pg_toast_1262	0	0	0	0				
+2610	pg_catalog	pg_index	8	17289	8	5696				
+2830	pg_toast	pg_toast_2604	0	0	0	0				
+2618	pg_catalog	pg_rewrite	18	2721	6	2756	50	1887	4	1510
+3600	pg_catalog	pg_ts_dict	2	2	0	0				
+2603	pg_catalog	pg_amproc	4	1977	4	2309				
+2396	pg_catalog	pg_shdescription	2	14	0	0	0	0	0	0
+11447	information_schema	sql_features	7	0			0	0	0	0

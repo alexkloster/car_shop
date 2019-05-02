@@ -1,0 +1,8 @@
+299860	299865	public	users	users_pk	26	26	26
+299869	299873	public	engine	engine_pk	25	25	25
+299877	299881	public	manufacture	manufacture_pk	48	48	48
+299885	299889	public	vehicle_type	vehicle_type_pk	48	48	48
+299893	299897	public	model	model_pk	25	25	25
+299915	299921	public	auto	auto_pk	25	25	25
+299935	299939	public	client	client_pk	24	24	24
+299949	299957	public	orders	order_pk	0	0	0

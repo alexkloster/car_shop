@@ -1,0 +1,31 @@
+1262	pg_sync_pg_database	1689	28	O	false		0	0	false	false	0		
+1260	pg_sync_pg_authid	1689	28	O	false		0	0	false	false	0		
+1261	pg_sync_pg_auth_members	1689	28	O	false		0	0	false	false	0		
+299877	RI_ConstraintTrigger_299900	1646	9	O	true	manufacture_fk	299893	299899	false	false	0		
+299877	RI_ConstraintTrigger_299901	1655	17	O	true	manufacture_fk	299893	299899	false	false	0		
+299893	RI_ConstraintTrigger_299902	1644	5	O	true	manufacture_fk	299877	299899	false	false	0		
+299893	RI_ConstraintTrigger_299903	1645	17	O	true	manufacture_fk	299877	299899	false	false	0		
+299885	RI_ConstraintTrigger_299905	1646	9	O	true	vehicle_type_fk	299893	299904	false	false	0		
+299885	RI_ConstraintTrigger_299906	1655	17	O	true	vehicle_type_fk	299893	299904	false	false	0		
+299893	RI_ConstraintTrigger_299907	1644	5	O	true	vehicle_type_fk	299885	299904	false	false	0		
+299893	RI_ConstraintTrigger_299908	1645	17	O	true	vehicle_type_fk	299885	299904	false	false	0		
+299893	RI_ConstraintTrigger_299924	1646	9	O	true	model_fk	299915	299923	false	false	0		
+299893	RI_ConstraintTrigger_299925	1655	17	O	true	model_fk	299915	299923	false	false	0		
+299915	RI_ConstraintTrigger_299926	1644	5	O	true	model_fk	299893	299923	false	false	0		
+299915	RI_ConstraintTrigger_299927	1645	17	O	true	model_fk	299893	299923	false	false	0		
+299869	RI_ConstraintTrigger_299929	1646	9	O	true	engine_fr	299915	299928	false	false	0		
+299869	RI_ConstraintTrigger_299930	1655	17	O	true	engine_fr	299915	299928	false	false	0		
+299915	RI_ConstraintTrigger_299931	1644	5	O	true	engine_fr	299869	299928	false	false	0		
+299915	RI_ConstraintTrigger_299932	1645	17	O	true	engine_fr	299869	299928	false	false	0		
+299915	RI_ConstraintTrigger_299960	1646	9	O	true	auto_fk	299949	299959	false	false	0		
+299915	RI_ConstraintTrigger_299961	1655	17	O	true	auto_fk	299949	299959	false	false	0		
+299949	RI_ConstraintTrigger_299962	1644	5	O	true	auto_fk	299915	299959	false	false	0		
+299949	RI_ConstraintTrigger_299963	1645	17	O	true	auto_fk	299915	299959	false	false	0		
+299935	RI_ConstraintTrigger_299965	1646	9	O	true	client_fk	299949	299964	false	false	0		
+299935	RI_ConstraintTrigger_299966	1655	17	O	true	client_fk	299949	299964	false	false	0		
+299949	RI_ConstraintTrigger_299967	1644	5	O	true	client_fk	299935	299964	false	false	0		
+299949	RI_ConstraintTrigger_299968	1645	17	O	true	client_fk	299935	299964	false	false	0		
+299860	RI_ConstraintTrigger_299970	1646	9	O	true	users_fk	299949	299969	false	false	0		
+299860	RI_ConstraintTrigger_299971	1655	17	O	true	users_fk	299949	299969	false	false	0		
+299949	RI_ConstraintTrigger_299972	1644	5	O	true	users_fk	299860	299969	false	false	0		
+299949	RI_ConstraintTrigger_299973	1645	17	O	true	users_fk	299860	299969	false	false	0		

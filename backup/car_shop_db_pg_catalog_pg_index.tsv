@@ -1,0 +1,103 @@
+2831	2830	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2833	2832	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2835	2834	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2837	2836	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2839	2838	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2841	2840	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2843	2842	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2845	2844	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2847	2846	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+2650	2600	1	true	false	false	true	false	true	1	1981	0		
+2651	2601	1	true	false	false	true	false	true	1	10034	0		
+2652	2601	1	true	false	false	true	false	true	-2	1981	0		
+2653	2602	4	true	false	false	true	false	true	1 2 3 4	1981 1981 1981 1979	0 0 0 0		
+2654	2602	2	true	false	false	true	false	true	5 1	1981 1981	0 0		
+2756	2602	1	true	false	false	true	false	true	-2	1981	0		
+2655	2603	4	true	false	false	true	false	true	1 2 3 4	1981 1981 1981 1979	0 0 0 0		
+2757	2603	1	true	false	false	true	false	true	-2	1981	0		
+2656	2604	2	true	false	false	true	false	true	1 2	1981 1979	0 0		
+2657	2604	1	true	false	false	true	false	true	-2	1981	0		
+2658	1249	2	true	false	false	true	false	true	1 2	1981 10034	0 0		
+2659	1249	2	true	false	false	true	false	true	1 6	1981 1979	0 0		
+2676	1260	1	true	false	false	true	false	true	1	10034	0		
+2677	1260	1	true	false	false	true	false	true	-2	1981	0		
+2694	1261	2	true	false	false	true	false	true	1 2	1981 1981	0 0		
+2695	1261	2	true	false	false	true	false	true	2 1	1981 1981	0 0		
+2660	2605	1	true	false	false	true	false	true	-2	1981	0		
+2661	2605	2	true	false	false	true	false	true	1 2	1981 1981	0 0		
+2662	1259	1	true	false	false	true	false	true	-2	1981	0		
+2663	1259	2	true	false	false	true	false	true	1 2	10034 1981	0 0		
+2664	2606	2	false	false	false	true	false	true	1 2	10034 1981	0 0		
+2665	2606	1	false	false	false	true	false	true	6	1981	0		
+2666	2606	1	false	false	false	true	false	true	7	1981	0		
+2667	2606	1	true	false	false	true	false	true	-2	1981	0		
+2668	2607	4	true	false	false	true	false	true	2 4 5 -2	1981 1978 1978 1981	0 0 0 0		
+2669	2607	2	true	false	false	true	false	true	1 2	10034 1981	0 0		
+2670	2607	1	true	false	false	true	false	true	-2	1981	0		
+2671	1262	1	true	false	false	true	false	true	1	10034	0		
+2672	1262	1	true	false	false	true	false	true	-2	1981	0		
+2673	2608	3	false	false	false	true	false	true	1 2 3	1981 1981 1978	0 0 0		
+2674	2608	3	false	false	false	true	false	true	4 5 6	1981 1981 1978	0 0 0		
+2675	2609	3	true	false	false	true	false	true	1 2 3	1981 1981 1978	0 0 0		
+2397	2396	2	true	false	false	true	false	true	1 2	1981 1981	0 0		
+3502	3501	1	true	false	false	true	false	true	-2	1981	0		
+3503	3501	2	true	false	false	true	false	true	1 2	1981 10034	0 0		
+2678	2610	1	false	false	false	true	false	true	2	1981	0		
+2679	2610	1	true	false	false	true	false	true	1	1981	0		
+2680	2611	2	true	false	false	true	false	true	1 3	1981 1978	0 0		
+2681	2612	1	true	false	false	true	false	true	1	10034	0		
+2682	2612	1	true	false	false	true	false	true	-2	1981	0		
+2683	2613	2	true	false	false	true	false	true	1 2	1981 1978	0 0		
+2684	2615	1	true	false	false	true	false	true	1	10034	0		
+2685	2615	1	true	false	false	true	false	true	-2	1981	0		
+2686	2616	3	true	false	false	true	false	true	1 2 3	1981 10034 1981	0 0 0		
+2687	2616	1	true	false	false	true	false	true	-2	1981	0		
+2688	2617	1	true	false	false	true	false	true	-2	1981	0		
+2689	2617	4	true	false	false	true	false	true	1 7 8 2	10034 1981 1981 1981	0 0 0 0		
+2754	2753	3	true	false	false	true	false	true	1 2 3	1981 10034 1981	0 0 0		
+2755	2753	1	true	false	false	true	false	true	-2	1981	0		
+1137	1136	1	true	false	false	true	false	true	1	10034	0		
+2690	1255	1	true	false	false	true	false	true	-2	1981	0		
+2691	1255	3	true	false	false	true	false	true	1 17 2	10034 10039 1981	0 0 0		
+2692	2618	1	true	false	false	true	false	true	-2	1981	0		
+2693	2618	2	true	false	false	true	false	true	2 1	1981 10034	0 0		
+1232	1214	4	false	false	false	true	false	true	1 2 3 4	1981 1981 1981 1978	0 0 0 0		
+1233	1214	2	false	false	false	true	false	true	5 6	1981 1981	0 0		
+2696	2619	2	true	false	false	true	false	true	1 2	1981 1979	0 0		
+2697	1213	1	true	false	false	true	false	true	-2	1981	0		
+2698	1213	1	true	false	false	true	false	true	1	10034	0		
+2699	2620	1	false	false	false	true	false	true	7	10034	0		
+2701	2620	2	true	false	false	true	false	true	1 2	1981 10034	0 0		
+2702	2620	1	true	false	false	true	false	true	-2	1981	0		
+3608	3602	2	true	false	false	true	false	true	1 2	10034 1981	0 0		
+3712	3602	1	true	false	false	true	false	true	-2	1981	0		
+3609	3603	3	true	false	false	true	false	true	1 2 3	1981 1978 1978	0 0 0		
+3604	3600	2	true	false	false	true	false	true	1 2	10034 1981	0 0		
+3605	3600	1	true	false	false	true	false	true	-2	1981	0		
+3606	3601	2	true	false	false	true	false	true	1 2	10034 1981	0 0		
+3607	3601	1	true	false	false	true	false	true	-2	1981	0		
+3766	3764	2	true	false	false	true	false	true	1 2	10034 1981	0 0		
+3767	3764	1	true	false	false	true	false	true	-2	1981	0		
+2703	1247	1	true	false	false	true	false	true	-2	1981	0		
+2704	1247	2	true	false	false	true	false	true	1 2	10034 1981	0 0		
+112	2328	1	true	false	false	true	false	true	-2	1981	0		
+548	2328	1	true	false	false	true	false	true	1	10034	0		
+113	1417	1	true	false	false	true	false	true	-2	1981	0		
+549	1417	1	true	false	false	true	false	true	1	10034	0		
+174	1418	1	true	false	false	true	false	true	-2	1981	0		
+175	1418	2	true	false	false	true	false	true	1 2	1981 1981	0 0		
+11451	11449	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+11456	11454	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+11461	11459	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+11466	11464	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+11471	11469	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+11476	11474	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+11481	11479	2	true	true	false	true	false	true	1 2	1981 1978	0 0		
+299865	299860	1	true	true	false	true	false	true	1	10028	0		
+299873	299869	1	true	true	false	true	false	true	1	10028	0		
+299881	299877	1	true	true	false	true	false	true	1	10028	0		
+299889	299885	1	true	true	false	true	false	true	1	10028	0		
+299897	299893	1	true	true	false	true	false	true	1	10028	0		
+299921	299915	1	true	true	false	true	false	true	1	10028	0		
+299939	299935	1	true	true	false	true	false	true	1	10028	0		
+299957	299949	1	true	true	false	true	false	true	1	10028	0		
