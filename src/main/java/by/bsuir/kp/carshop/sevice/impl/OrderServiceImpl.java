@@ -44,4 +44,10 @@ public class OrderServiceImpl implements OrderService {
 //        }
         return repository.findAll();
     }
+
+
+    @Override
+    public OrderEntity save(OrderEntity entity) {
+        return repository.save(entity);
+    }
 }

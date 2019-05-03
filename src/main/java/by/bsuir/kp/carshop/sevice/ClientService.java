@@ -9,4 +9,12 @@ import java.util.List;
 public interface ClientService {
 
     List<ClientEntity> getAllClients();
+
+    ClientEntity getBySeriesAndNumber(ClientEntity entity);
+
+    ClientEntity save(ClientEntity clientEntity);
+
+    ClientEntity getById(Long id);
+
+
 }

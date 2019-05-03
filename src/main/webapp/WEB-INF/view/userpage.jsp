@@ -49,7 +49,7 @@
                                 <a class="nav-link" href="/userPage"><i class="fa fa-home"></i> </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/sell-auto">Продать авто</a>
+                                <a class="nav-link" href="/sell">Продать авто</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
@@ -593,13 +593,15 @@
             <c:when test="${mode=='MODE_AUTOMOBILES'}">
                 <br>
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="float-right">
-                                <a class="btn btn-primary" href="/car-new">Добавить новый автомобиль</a>
+                    <c:if test="${autoMode=='MODE_AUTOMOBILE'}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="float-right">
+                                    <a class="btn btn-primary" href="/car-new">Добавить новый автомобиль</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:if>
                     <br>
                     <div class="card">
                         <div class="card-header" id="filteringBlockHeader">
@@ -617,7 +619,8 @@
                             <div class="card-body">
                                 <div class="row" id="filters">
                                     <form class="form-horizontal col-lg-12" method="POST"
-                                          action="/car-filter">
+                                          <c:if test="${autoMode=='MODE_AUTOMOBILE'}">action="/car-filter"</c:if>
+                                          <c:if test="${autoMode=='MODE_SELL'}">action="/sell-filter"</c:if>>
                                         <div class="card">
                                             <div class="card-header" id="headingOne">
                                                 <h5 class="mb-0">
@@ -635,13 +638,16 @@
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <label class="control-label col-lg-12">Марка</label>
-                                                            <form:input type="hidden" path="autoFilter.model.manufactureName"
+                                                            <form:input type="hidden"
+                                                                        path="autoFilter.model.manufactureName"
                                                                         name="autoManufactureName"
                                                                         id="autoManufactureName"/>
                                                             <div class="col-lg-12">
-                                                                <select class="form-control" id="autoManufactureNameSelect">
+                                                                <select class="form-control"
+                                                                        id="autoManufactureNameSelect">
                                                                     <option></option>
-                                                                    <c:forEach var="manufacture" items="${manufactures}">
+                                                                    <c:forEach var="manufacture"
+                                                                               items="${manufactures}">
                                                                         <option value="${manufacture.name}"><c:out
                                                                                 value="${manufacture.name}"/></option>
                                                                     </c:forEach>
@@ -665,13 +671,16 @@
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <label class="control-label col-lg-12">Тип кузова</label>
-                                                            <form:input type="hidden" path="autoFilter.model.vehicleTypeId"
+                                                            <form:input type="hidden"
+                                                                        path="autoFilter.model.vehicleTypeId"
                                                                         name="autoVehicleTypeId"
                                                                         id="autoVehicleTypeId"/>
                                                             <div class="col-lg-12">
-                                                                <select class="form-control" id="autoVehicleTypeIdSelect">
+                                                                <select class="form-control"
+                                                                        id="autoVehicleTypeIdSelect">
                                                                     <option></option>
-                                                                    <c:forEach var="vehicleType" items="${vehicleTypes}">
+                                                                    <c:forEach var="vehicleType"
+                                                                               items="${vehicleTypes}">
                                                                         ${vehicleType.id}
                                                                         <option value="${vehicleType.id}"><c:out
                                                                                 value="${vehicleType.name}"/></option>
@@ -716,21 +725,27 @@
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="col-lg-12">
-                                                                <form:input type="hidden" path="autoFilter.engine.minPower"
+                                                                <form:input type="hidden"
+                                                                            path="autoFilter.engine.minPower"
                                                                             name="autoMinPowerHidden"
                                                                             id="autoMinPowerHidden" value="100"/>
-                                                                <form:input type="hidden" path="autoFilter.engine.maxPower"
+                                                                <form:input type="hidden"
+                                                                            path="autoFilter.engine.maxPower"
                                                                             name="autoMaxPowerHidden"
                                                                             id="autoMaxPowerHidden" value="200"/>
                                                                 <label class="control-label col-lg-12">Мощность</label>
 
-                                                                <label class="control-label col-lg-4" for="autoMinPower">От:</label>
-                                                                <input id="autoMinPower" type="number" class="col-lg-8" value="100"
+                                                                <label class="control-label col-lg-4"
+                                                                       for="autoMinPower">От:</label>
+                                                                <input id="autoMinPower" type="number" class="col-lg-8"
+                                                                       value="100"
                                                                        min="80"
                                                                        max="500" step="10" data-suffix="лс">
 
-                                                                <label class="control-label col-lg-4" for="autoMaxPower">До:</label>
-                                                                <input id="autoMaxPower" type="number" class="col-lg-8" value="200"
+                                                                <label class="control-label col-lg-4"
+                                                                       for="autoMaxPower">До:</label>
+                                                                <input id="autoMaxPower" type="number" class="col-lg-8"
+                                                                       value="200"
                                                                        min="80"
                                                                        max="500" step="10" data-suffix="лс">
                                                             </div>
@@ -738,24 +753,29 @@
                                                         <div class="col-lg-4">
                                                             <div class="col-lg-12">
                                                                 <div class="float-right"></div>
-                                                                <form:input type="hidden" path="autoFilter.engine.minConsumption"
+                                                                <form:input type="hidden"
+                                                                            path="autoFilter.engine.minConsumption"
                                                                             name="autoMinConsumptionHidden"
                                                                             id="autoMinConsumptionHidden" value="5"/>
-                                                                <form:input type="hidden" path="autoFilter.engine.maxConsumption"
+                                                                <form:input type="hidden"
+                                                                            path="autoFilter.engine.maxConsumption"
                                                                             name="autoMaxConsumptionHidden"
                                                                             id="autoMaxConsumptionHidden" value="10"/>
-                                                                <label class="control-label col-lg-12">Расход топлива</label>
+                                                                <label class="control-label col-lg-12">Расход
+                                                                    топлива</label>
 
                                                                 <label class="control-label col-lg-4"
                                                                        for="autoMinConsumption">От:</label>
-                                                                <input id="autoMinConsumption" type="number" class="col-lg-8"
+                                                                <input id="autoMinConsumption" type="number"
+                                                                       class="col-lg-8"
                                                                        value="5"
                                                                        min="4"
                                                                        max="20" step="1" data-suffix="л/100км">
 
                                                                 <label class="control-label col-lg-4"
                                                                        for="autoMaxConsumption">До:</label>
-                                                                <input id="autoMaxConsumption" type="number" class="col-lg-8"
+                                                                <input id="autoMaxConsumption" type="number"
+                                                                       class="col-lg-8"
                                                                        value="10"
                                                                        min="4"
                                                                        max="20" step="1" data-suffix="л/100км">
@@ -792,13 +812,17 @@
                                                                             id="autoMaxCostHidden" value="2000"/>
                                                                 <label class="control-label col-lg-12">Цена</label>
 
-                                                                <label class="control-label col-lg-4" for="autoMinCost">От:</label>
-                                                                <input id="autoMinCost" type="number" class="col-lg-8" value="10000"
+                                                                <label class="control-label col-lg-4"
+                                                                       for="autoMinCost">От:</label>
+                                                                <input id="autoMinCost" type="number" class="col-lg-8"
+                                                                       value="10000"
                                                                        min="5000"
                                                                        max="10000" step="1000" data-suffix="$">
 
-                                                                <label class="control-label col-lg-4" for="modelMaxCost">До:</label>
-                                                                <input id="autoMaxCost" type="number" class="col-lg-8" value="20000"
+                                                                <label class="control-label col-lg-4"
+                                                                       for="modelMaxCost">До:</label>
+                                                                <input id="autoMaxCost" type="number" class="col-lg-8"
+                                                                       value="20000"
                                                                        min="5000"
                                                                        max="600000" step="1000" data-suffix="$">
                                                             </div>
@@ -811,7 +835,11 @@
 
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <a class="btn btn-primary" href="/car">Сбросить</a>
+                                                <a class="btn btn-primary"
+                                                   <c:if test="${autoMode=='MODE_AUTOMOBILE'}">href="/car"</c:if>
+                                                   <c:if test="${autoMode=='MODE_SELL'}">href="/sell"</c:if>>
+                                                    Сбросить
+                                                </a>
                                             </div>
                                             <div class="col-lg-4 offset-lg-4">
                                                 <div class="float-right">
@@ -841,8 +869,13 @@
                                     <th>Объем</th>
                                     <th>Расход</th>
                                     <th>Цена</th>
-                                    <th>Редактировать</th>
-                                    <th>Удалить</th>
+                                    <c:if test="${autoMode=='MODE_AUTOMOBILE'}">
+                                        <th>Редактировать</th>
+                                        <th>Удалить</th>
+                                    </c:if>
+                                    <c:if test="${autoMode=='MODE_SELL'}">
+                                        <th>Продать</th>
+                                    </c:if>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -856,10 +889,15 @@
                                         <td>${car.engine.capacity}см<sup>3</sup></td>
                                         <td>${car.engine.consumption}л/100км</td>
                                         <td>${car.engine.cost + car.model.cost}$</td>
-                                        <td><a href="/model-edit?id=${car.id }"><i class="fa fa-edit"></i> </a>
-                                        </td>
-                                        <td><a href="/model-delete?id=${car.id }"><i class="fa fa-trash"></i></a>
-                                        </td>
+                                        <c:if test="${autoMode=='MODE_AUTOMOBILE'}">
+                                            <td><a href="/car-edit?id=${car.id }"><i class="fa fa-edit"></i> </a>
+                                            </td>
+                                            <td><a href="/car-delete?id=${car.id }"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </c:if>
+                                        <c:if test="${autoMode=='MODE_SELL'}">
+                                        <td><a href="/fill-client?carId=${car.id }"><i class="fa fa-shopping-cart"></i></a>
+                                            </c:if>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -1002,6 +1040,409 @@
                     </div>
                 </div>
             </c:when>
+            <c:when test="${mode=='MODE_AUTOMOBILE_EDIT'}">
+                <br>
+                <div class="container">
+                    <div class="col-lg-6 offset-lg-3">
+                        <form class="form-horizontal" method="POST" action="/car-save">
+                            <div class="col-lg-12">
+                                <form:input type="hidden" name="id" path="car.id"/>
+
+
+                                <label class="control-label col-lg-12">Модель</label>
+                                <div class="form-group">
+
+                                    <form:input type="hidden" path="car.model.id" name="autoModelId"
+                                                id="autoModelId"/>
+                                    <div class="row">
+                                        <div class="col-lg-11">
+                                            <select class="form-control" id="autoModelSelect">
+                                                <option value="${car.model.id}"><c:out
+                                                        value="${car.model.manufacture.name} ${car.model.name}"/></option>
+                                                <c:forEach var="model" items="${models}">
+                                                    <option value="${model.id}"><c:out
+                                                            value="${model.manufacture.name} ${model.name}"/></option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="button" id="openModelModal" class="btn btn-primary btn-sm"
+                                                    data-target="#modelInfoModal" data-toggle="modal">
+                                                <i class="fa fa-info"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <label class="control-label col-lg-12">Двигатель</label>
+                                <div class="form-group">
+
+                                    <form:input type="hidden" path="car.engine.id" name="autoEngineId"
+                                                id="autoEngineId"/>
+
+                                    <div class="row">
+                                        <div class="col-lg-11">
+                                            <select class="form-control" id="autoEngineSelect">
+                                                <option value="${car.engine.id}"><c:out
+                                                        value="${car.engine.name}"/></option>
+                                                <c:forEach var="engine" items="${engines}">
+                                                    <option value="${engine.id}"><c:out
+                                                            value="${engine.name}"/></option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="button" id="openEngineModal" class="btn btn-primary btn-sm"
+                                                    data-target="#engineInfoModal" data-toggle="modal">
+                                                <i class="fa fa-info"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <div class="col-lg-6 offset-lg-5">
+                                        <input type="submit" class="btn btn-primary" value="Сохранить"
+                                               id="saveAuto"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </c:when>
+            <c:when test="${mode == 'MODE_FILL_CLIENT'}">
+                <div class="container">
+
+                <h4>Оформление покупки автомобиля</h4>
+                <div class="sell">
+                    <div class="card">
+                        <div class="card-header" id="collapsedAuto">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapseSelledAuto" aria-expanded="true"
+                                        aria-controls="collapseSelledAuto">
+                                    Параметры автомобиля
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseSelledAuto" class="collapse" aria-labelledby="collapsedAuto"
+                             data-parent="sell">
+                            <div class="card-body">
+                                <div class="row">
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Марка</th>
+                                                <th>Модель</th>
+                                                <th>Тип</th>
+                                                <th>Двигатель</th>
+                                                <th>Мощность</th>
+                                                <th>Объем</th>
+                                                <th>Расход</th>
+                                                <th>Цена</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>${car.model.manufacture.name}</td>
+                                                <td>${car.model.name}</td>
+                                                <td>${car.model.vehicleType.name}</td>
+                                                <td>${car.engine.name}</td>
+                                                <td>${car.engine.power}лс</td>
+                                                <td>${car.engine.capacity}см<sup>3</sup></td>
+                                                <td>${car.engine.consumption}л/100км</td>
+                                                <td>${car.engine.cost + car.model.cost}$</td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client">
+                    <div class="card">
+                        <div class="card-header" id="collapsedClientHeader">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapsedClient" aria-expanded="true"
+                                        aria-controls="collapsedClient">
+                                    Данные клиента
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapsedClient" class="collapse show" aria-labelledby="collapsedClientHeader"
+                             data-parent="sell">
+                            <div class="card-body">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <c:choose>
+                                            <c:when test="${client_mode == null}">
+                                                <form class="form-horizontal col-lg-12" method="POST"
+                                                      action="/find-client?carId=${car.id }">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-lg-12">Серия
+                                                                    паспорта</label>
+                                                                <div class="col-lg-8">
+                                                                    <input type="text"
+                                                                           class="form-control passportSeries"
+                                                                           name="passportSeries"
+                                                                           value="${client.passportSeries }"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-lg-10">Номер
+                                                                    паспорта</label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text"
+                                                                           class="form-control passportNumber"
+                                                                           name="passportNumber"
+                                                                           value="${client.passportNumber }"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label class="control-label col-lg-10"> </label>
+                                                            <div class="form-group col-lg-12">
+                                                                <input type="submit" class="btn btn-primary"
+                                                                       value="Найти"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </c:when>
+                                            <c:when test="${client_mode == 'NEW'}">
+                                                <div class="alert alert-info">
+                                                    Такого клиента нет, необходимо добавить нового.
+                                                </div>
+                                                <form class="form-horizontal col-lg-12" method="POST"
+                                                      action="/save-client?carId=${car.id}">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-lg-12">ФИО
+                                                                    клиента</label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control"
+                                                                           name="name"
+                                                                           value="${client.name }"
+                                                                           required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-lg-10">Серия
+                                                                    паспорта</label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text"
+                                                                           class="form-control passportSeries"
+                                                                           name="passportSeries"
+                                                                           value="${client.passportSeries }"
+                                                                           required="true"/>
+                                                                </div>
+                                                                <br>
+                                                                <label class="control-label col-lg-10">Номер
+                                                                    паспорта</label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text"
+                                                                           class="form-control passportNumber"
+                                                                           name="passportNumber"
+                                                                           value="${client.passportNumber }"
+                                                                           required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-lg-10">Адрес</label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control"
+                                                                           name="address"
+                                                                           value="${client.address }"/>
+                                                                </div>
+                                                                <br>
+                                                                <label class="control-label col-lg-10">Номер
+                                                                    Телефона</label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text"
+                                                                           class="form-control phone"
+                                                                           name="phone"
+                                                                           value="${client.phone }"
+                                                                           required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <div class="col-lg-12">
+                                                                    <div class="float-right">
+                                                                        <input type="submit"
+                                                                               class="btn btn-primary"
+                                                                               value="Сохранить"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </c:when>
+                                            <c:when test="${client_mode == 'EXISTS'}">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <form:input path="client.id" type="hidden"
+                                                                    name="id"/>
+                                                        <label class="control-label col-lg-12">ФИО
+                                                            клиента</label>
+                                                        <div class="col-lg-12">
+                                                            <form:input type="text" class="form-control"
+                                                                        name="name"
+                                                                        path="client.name"
+                                                                        disabled="true"/>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-lg-10">Серия
+                                                            паспорта</label>
+                                                        <div class="col-lg-12">
+                                                            <form:input type="text" class="form-control"
+                                                                        name="passportSeries"
+                                                                        path="client.passportSeries"
+                                                                        disabled="true"/>
+                                                        </div>
+                                                        <br>
+                                                        <label class="control-label col-lg-10">Номер
+                                                            паспорта</label>
+                                                        <div class="col-lg-12">
+                                                            <form:input type="text" class="form-control"
+                                                                        name="passportNumber"
+                                                                        path="client.passportNumber"
+                                                                        disabled="true"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-lg-10">Адрес</label>
+                                                        <div class="col-lg-12">
+                                                            <form:input type="text" class="form-control"
+                                                                        name="address"
+                                                                        path="client.address"
+                                                                        disabled="true"/>
+                                                        </div>
+                                                        <br>
+                                                        <label class="control-label col-lg-10">Номер
+                                                            Телефона</label>
+                                                        <div class="col-lg-12">
+                                                            <form:input type="text" class="form-control"
+                                                                        name="phone"
+                                                                        path="client.phone"
+                                                                        disabled="true"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <c:if test="${client_mode == 'EXISTS'}">
+                    <div class="additional">
+                        <div class="card">
+                            <div class="card-header" id="collapsedAdditionalHeader">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsedAdditional" aria-expanded="true"
+                                            aria-controls="collapsedAdditional">
+                                        Дополнительные данные заказа
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapsedAdditional" class="collapse show"
+                                 aria-labelledby="collapsedAdditionalHeader"
+                                 data-parent="sell">
+                                <div class="card-body">
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <form class="form-horizontal col-lg-12" method="POST"
+                                                  action="/save-order?carId=${car.id }&clientId=${client.id}">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-10">Vin</label>
+                                                            <div class="col-lg-12">
+                                                                <form:input type="text" class="form-control"
+                                                                            name="vin"
+                                                                            path="order.vin"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label class="control-label col-lg-10">Начало</label>
+                                                        <div class="col-lg-12">
+                                                            <form:input type="date" class="form-control"
+                                                                        name="starDate"
+                                                                        path="order.firstDate"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label class="control-label col-lg-10">Окончание</label>
+                                                        <div class="col-lg-12">
+                                                            <form:input type="date" class="form-control"
+                                                                        name="endDate"
+                                                                        path="order.secondDate"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="col-lg-12">
+                                                                <div class="float-right">
+                                                                    <input type="submit"
+                                                                           class="btn btn-primary"
+                                                                           value="Сохранить"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </c:if>
+            </c:when>
         </c:choose>
     </div>
 
@@ -1065,6 +1506,106 @@
     </footer>
 </div>
 
+
+<div class="modal fade" id="modelInfoModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Информация о модели</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="control-label col-lg-12"><h5><span id="manufactureModelName"></span></h5></label>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Производитель</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="manufacture"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Тип</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="vehicleType"></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Модель</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="model"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Цена</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="price"></span><span>$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="engineInfoModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Информация о двигателе</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="control-label col-lg-12"><h5><span id="engineName"></span></h5></label>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Мощность</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="power"></span><span> лс</span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Объем</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="capacity"></span><span> см<sup>3</sup></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Расход топлива</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="consumption"></span><span> л/100км</span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Цена</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="cost"></span><span>$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="static/js/jquery-1.11.1.min.js"></script>
@@ -1072,7 +1613,10 @@
 <script src="static/js/app.js"></script>
 <script src="static/js/engine.js"></script>
 <script src="static/js/model.js"></script>
+<script src="static/js/auto.js"></script>
 <script src="static/js/bootstrap-input-spinner.js"></script>
+<script src="static/js/dist/jquery.inputmask.bundle.js"></script>
+
 <script>
     $("input[type='number']").inputSpinner()
 </script>

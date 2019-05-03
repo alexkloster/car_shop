@@ -12,4 +12,6 @@ public interface OrderService {
     List<OrderEntity> getAllOrders();
 
     List<OrderEntity> filterOrders(OrderFiltering params);
+
+    OrderEntity save(OrderEntity entity);
 }

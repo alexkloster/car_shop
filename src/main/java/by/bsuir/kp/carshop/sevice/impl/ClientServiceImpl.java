@@ -18,4 +18,21 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientEntity> getAllClients() {
         return clientRepository.findAll();
     }
+
+    @Override
+    public ClientEntity getBySeriesAndNumber(ClientEntity entity) {
+        System.out.println(entity.getPassportNumber());
+        System.out.println(entity.getPassportSeries());
+        return clientRepository.findByPassportSeriesAndPassportNumber(entity.getPassportSeries(), entity.getPassportNumber()).orElse(entity);
+    }
+
+    @Override
+    public ClientEntity save(ClientEntity clientEntity) {
+        return clientRepository.save(clientEntity);
+    }
+
+    @Override
+    public ClientEntity getById(Long id) {
+        return clientRepository.findById(id).orElse(new ClientEntity());
+    }
 }

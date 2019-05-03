@@ -130,6 +130,12 @@ alter table orders
 	add vin varchar(20);
 
 
+alter table client
+	add address varchar(30);
+
+alter table client
+	add phone varchar(20);
+
 
 
 

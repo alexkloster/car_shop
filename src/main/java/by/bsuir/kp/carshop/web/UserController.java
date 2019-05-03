@@ -1,9 +1,6 @@
 package by.bsuir.kp.carshop.web;
 
-import by.bsuir.kp.carshop.dao.entity.EngineEntity;
-import by.bsuir.kp.carshop.dao.entity.ManufactureEntity;
-import by.bsuir.kp.carshop.dao.entity.ModelEntity;
-import by.bsuir.kp.carshop.dao.entity.VehicleTypeEntity;
+import by.bsuir.kp.carshop.dao.entity.*;
 import by.bsuir.kp.carshop.filtering.AutoFiltering;
 import by.bsuir.kp.carshop.filtering.EngineFiltering;
 import by.bsuir.kp.carshop.filtering.ModelFiltering;
@@ -11,13 +8,16 @@ import by.bsuir.kp.carshop.filtering.OrderFiltering;
 import by.bsuir.kp.carshop.sevice.*;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -37,6 +37,22 @@ public class UserController {
     @Autowired
     private AutoService autoService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
+    private OrderService orderService;
+
+
+    @InitBinder
+    public void initBinder(final WebDataBinder binder) {
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-dd-MM");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
     @RequestMapping("/userPage")
     public String adminPage(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_HOME");
@@ -44,10 +60,15 @@ public class UserController {
     }
 
 
-    @RequestMapping("/sell-auto")
+    @RequestMapping("/sell")
     public String sellAuto(HttpServletRequest request, Model model) {
-        request.setAttribute("mode", "MODE_SELL");
-        model.addAttribute("filtering", new OrderFiltering());
+        request.setAttribute("mode", "MODE_AUTOMOBILES");
+        request.setAttribute("autoMode", "MODE_SELL");
+
+        request.setAttribute("cars", autoService.getAllCars());
+
+
+        setCarAttributes(request, model, new AutoFiltering());
 
         return "userpage";
     }
@@ -163,14 +184,142 @@ public class UserController {
     @RequestMapping("/car")
     public String car(HttpServletRequest request, Model model) {
         request.setAttribute("mode", "MODE_AUTOMOBILES");
+        request.setAttribute("autoMode", "MODE_AUTOMOBILE");
+
         request.setAttribute("cars", autoService.getAllCars());
+
+        setCarAttributes(request, model, new AutoFiltering());
+
+        return "userpage";
+    }
+
+    private void setCarAttributes(HttpServletRequest request, Model model, AutoFiltering filtering) {
         request.setAttribute("manufactures", manufactureService.getAllManufactures());
         request.setAttribute("vehicleTypes", vehicleTypeService.getAllVehicleTypes());
         request.setAttribute("models", modelService.getAllModels());
         request.setAttribute("engines", engineService.getAllEngines());
 
+        model.addAttribute("autoFilter", filtering);
 
-        model.addAttribute("autoFilter", new AutoFiltering());
+    }
+
+
+    @RequestMapping("/car-filter")
+    public String filterCar(@ModelAttribute AutoFiltering filtering, HttpServletRequest request, Model model) {
+        request.setAttribute("cars", autoService.filterCars(filtering));
+
+        request.setAttribute("autoMode", "MODE_AUTOMOBILE");
+        request.setAttribute("mode", "MODE_AUTOMOBILES");
+
+        setCarAttributes(request, model, filtering);
         return "userpage";
+    }
+
+    @RequestMapping("/car-edit")
+    public String carEdit(@RequestParam Long id, HttpServletRequest request, Model model) {
+
+        AutoEntity autoEntity = autoService.getById(id);
+
+        request.setAttribute("mode", "MODE_AUTOMOBILE_EDIT");
+        request.setAttribute("car", autoEntity);
+        request.setAttribute("models", modelService.getAllModels());
+        request.setAttribute("engines", engineService.getAllEngines());
+
+        model.addAttribute("car", autoEntity);
+
+        return "userpage";
+    }
+
+    @RequestMapping("/car-new")
+    public String carNew(HttpServletRequest request, Model model) {
+        AutoEntity autoEntity = new AutoEntity();
+        autoEntity.setEngine(new EngineEntity());
+        autoEntity.setModel(new ModelEntity());
+
+        request.setAttribute("mode", "MODE_AUTOMOBILE_EDIT");
+        request.setAttribute("autoMode", "MODE_AUTOMOBILE");
+        request.setAttribute("car", autoEntity);
+        request.setAttribute("models", modelService.getAllModels());
+        request.setAttribute("engines", engineService.getAllEngines());
+
+        model.addAttribute("car", autoEntity);
+        return "userpage";
+    }
+
+    @RequestMapping("car-save")
+    public String carSave(@ModelAttribute AutoEntity autoEntity, HttpServletRequest request, Model model) {
+        autoService.save(autoEntity);
+        return car(request, model);
+    }
+
+    @RequestMapping("/car-delete")
+    public String carDelete(@RequestParam long id, HttpServletRequest request, Model model) {
+        autoService.deleteById(id);
+        return car(request, model);
+    }
+
+
+    @GetMapping("/getEngineInfo/{id}")
+    @ResponseBody
+    public EngineEntity engineInfo(@PathVariable("id") Long id, Model model){
+        return engineService.getById(id);
+    }
+
+    @GetMapping("/getModelInfo/{id}")
+    @ResponseBody
+    public ModelEntity modelInfo(@PathVariable("id") Long id, Model model){
+        return modelService.getById(id);
+    }
+
+
+    @RequestMapping("/fill-client")
+    public String fillClient(@RequestParam long carId, HttpServletRequest request, Model model) {
+        AutoEntity autoEntity = autoService.getById(carId);
+
+        request.setAttribute("mode", "MODE_FILL_CLIENT");
+
+        request.setAttribute("car", autoEntity);
+
+        model.addAttribute("order", new OrderEntity());
+        return "userpage";
+    }
+
+
+    @RequestMapping("/find-client")
+    public String findClient(@ModelAttribute ClientEntity client, @RequestParam long carId, HttpServletRequest request, Model model) {
+
+        client = clientService.getBySeriesAndNumber(client);
+
+        if (client.getId() == null) {
+            request.setAttribute("client_mode", "NEW");
+        } else {
+            request.setAttribute("client_mode", "EXISTS");
+        }
+
+        model.addAttribute("client", client);
+
+        request.setAttribute("client", client);
+        return fillClient(carId, request, model);
+    }
+
+
+    @RequestMapping("/save-client")
+    public String saveClient(@ModelAttribute ClientEntity client, @RequestParam long carId, HttpServletRequest request, Model model) {
+        client = clientService.save(client);
+        return findClient(client, carId, request, model);
+    }
+
+
+    @RequestMapping("/save-order")
+    public String saveClient(@ModelAttribute OrderEntity order, @RequestParam long carId, @RequestParam long clientId, HttpServletRequest request, Model model) {
+        ClientEntity client = clientService.getById(clientId);
+        AutoEntity auto = autoService.getById(carId);
+        order.setClient(client);
+        order.setAuto(auto);
+        order.setUser(userService.getCurrentUser());
+        order.setPrice(auto.getEngine().getCost() + auto.getModel().getCost());
+        order.setReady(false);
+        orderService.save(order);
+        return sellAuto(request, model);
     }
 }
