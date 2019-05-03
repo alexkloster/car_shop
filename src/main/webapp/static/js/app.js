@@ -6,6 +6,9 @@ $('#userSelect').on('change', function () {
 
 });
 
+
+
+
 $('#manufactureSelect').on('change', function () {
 
     var combo = document.getElementById("manufactureSelect");
@@ -37,6 +40,10 @@ $('#readySelect').on('change', function () {
     $("#readyFilter").val(capitalization.checked);
 
 });
+
+
+$("input[type='number']").inputSpinner();
+
 
 $('#readySelect1').on('change', function () {
 
@@ -176,7 +183,7 @@ function formatDate(date) {
     var year = date.getFullYear();
 
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
-}
+};
 
 
 function formatDateFromPattern(date, pattern) {
@@ -200,3 +207,15 @@ function formatDateFromPattern(date, pattern) {
 
 
 }
+
+
+//     var max = document.getElementById("engineMaxPower").value;
+//
+//     $("#engineMaxPower").attr({
+//         "max": max
+//     });
+//     $("#engineMaxPowerHidden").val(min);
+//
+// });
+//
+//

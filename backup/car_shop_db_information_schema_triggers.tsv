@@ -1,9 +1,0 @@
-car_shop_db	pg_catalog	pg_sync_pg_authid	INSERT	car_shop_db	pg_catalog	pg_authid			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_authid	DELETE	car_shop_db	pg_catalog	pg_authid			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_authid	UPDATE	car_shop_db	pg_catalog	pg_authid			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_database	INSERT	car_shop_db	pg_catalog	pg_database			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_database	DELETE	car_shop_db	pg_catalog	pg_database			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_database	UPDATE	car_shop_db	pg_catalog	pg_database			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_auth_members	INSERT	car_shop_db	pg_catalog	pg_auth_members			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_auth_members	DELETE	car_shop_db	pg_catalog	pg_auth_members			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					
-car_shop_db	pg_catalog	pg_sync_pg_auth_members	UPDATE	car_shop_db	pg_catalog	pg_auth_members			EXECUTE PROCEDURE flatfile_update_trigger()	STATEMENT	AFTER					

@@ -1,8 +1,0 @@
-299860	299865	public	users	users_pk	2	38
-299869	299873	public	engine	engine_pk	2	35
-299877	299881	public	manufacture	manufacture_pk	2	58
-299885	299889	public	vehicle_type	vehicle_type_pk	2	58
-299893	299897	public	model	model_pk	2	35
-299915	299921	public	auto	auto_pk	2	35
-299935	299939	public	client	client_pk	2	33
-299949	299957	public	orders	order_pk	2	0

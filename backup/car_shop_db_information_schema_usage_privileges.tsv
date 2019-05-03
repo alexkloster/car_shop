@@ -1,4 +1,0 @@
-postgres	PUBLIC	car_shop_db	information_schema	cardinal_number	DOMAIN	USAGE	NO
-postgres	PUBLIC	car_shop_db	information_schema	character_data	DOMAIN	USAGE	NO
-postgres	PUBLIC	car_shop_db	information_schema	sql_identifier	DOMAIN	USAGE	NO
-postgres	PUBLIC	car_shop_db	information_schema	time_stamp	DOMAIN	USAGE	NO

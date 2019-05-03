@@ -23,9 +23,9 @@ public class EngineEntity {
 
     private Double cost;
 
-    public EngineEntity(String name, Integer prover, Double capacity, Double consumption, Double cost) {
+    public EngineEntity(String name, Integer power, Double capacity, Double consumption, Double cost) {
         this.name = name;
-        this.power = prover;
+        this.power = power;
         this.capacity = capacity;
         this.consumption = consumption;
         this.cost = cost;
@@ -50,12 +50,13 @@ public class EngineEntity {
         this.name = name;
     }
 
-    public Integer getProver() {
+
+    public Integer getPower() {
         return power;
     }
 
-    public void setProver(Integer prover) {
-        this.power = prover;
+    public void setPower(Integer power) {
+        this.power = power;
     }
 
     public Double getCapacity() {

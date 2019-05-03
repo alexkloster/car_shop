@@ -1,4 +1,0 @@
-btree	5	1	true	true	true	true	true	true	true	false	true	0	btinsert	btbeginscan	btgettuple	btgetbitmap	btrescan	btendscan	btmarkpos	btrestrpos	btbuild	btbulkdelete	btvacuumcleanup	btcostestimate	btoptions
-hash	1	1	false	true	false	false	false	false	false	false	false	23	hashinsert	hashbeginscan	hashgettuple	hashgetbitmap	hashrescan	hashendscan	hashmarkpos	hashrestrpos	hashbuild	hashbulkdelete	hashvacuumcleanup	hashcostestimate	hashoptions
-gist	0	7	false	false	false	true	true	true	true	true	true	0	gistinsert	gistbeginscan	gistgettuple	gistgetbitmap	gistrescan	gistendscan	gistmarkpos	gistrestrpos	gistbuild	gistbulkdelete	gistvacuumcleanup	gistcostestimate	gistoptions
-gin	0	5	false	false	false	true	true	false	false	true	false	0	gininsert	ginbeginscan	-	gingetbitmap	ginrescan	ginendscan	ginmarkpos	ginrestrpos	ginbuild	ginbulkdelete	ginvacuumcleanup	gincostestimate	ginoptions

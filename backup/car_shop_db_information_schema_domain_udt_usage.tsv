@@ -1,4 +1,0 @@
-car_shop_db	pg_catalog	int4	car_shop_db	information_schema	cardinal_number
-car_shop_db	pg_catalog	varchar	car_shop_db	information_schema	sql_identifier
-car_shop_db	pg_catalog	varchar	car_shop_db	information_schema	character_data
-car_shop_db	pg_catalog	timestamptz	car_shop_db	information_schema	time_stamp

@@ -1,4 +1,0 @@
-car_shop_db	information_schema	cardinal_number	integer									32	2	0					car_shop_db	pg_catalog	int4					1
-car_shop_db	information_schema	sql_identifier	character varying		1073741824														car_shop_db	pg_catalog	varchar					1
-car_shop_db	information_schema	character_data	character varying		1073741824														car_shop_db	pg_catalog	varchar					1
-car_shop_db	information_schema	time_stamp	timestamp with time zone												2			('now'::text)::timestamp(2) with time zone	car_shop_db	pg_catalog	timestamptz					1

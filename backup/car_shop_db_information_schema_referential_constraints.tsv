@@ -1,7 +1,0 @@
-car_shop_db	public	manufacture_fk	car_shop_db	public	manufacture_pk	NONE	NO ACTION	CASCADE
-car_shop_db	public	vehicle_type_fk	car_shop_db	public	vehicle_type_pk	NONE	NO ACTION	CASCADE
-car_shop_db	public	model_fk	car_shop_db	public	model_pk	NONE	NO ACTION	CASCADE
-car_shop_db	public	engine_fr	car_shop_db	public	engine_pk	NONE	NO ACTION	CASCADE
-car_shop_db	public	auto_fk	car_shop_db	public	auto_pk	NONE	NO ACTION	CASCADE
-car_shop_db	public	client_fk	car_shop_db	public	client_pk	NONE	NO ACTION	CASCADE
-car_shop_db	public	users_fk	car_shop_db	public	users_pk	NONE	NO ACTION	CASCADE
