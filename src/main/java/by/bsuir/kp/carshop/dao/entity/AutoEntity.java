@@ -10,7 +10,6 @@ public class AutoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String vin;
 
     @ManyToOne
     @JoinColumn(name = "model_id")
@@ -20,8 +19,7 @@ public class AutoEntity {
     @JoinColumn(name = "engine_id")
     private EngineEntity engine;
 
-    public AutoEntity(String vin, ModelEntity model, EngineEntity engine) {
-        this.vin = vin;
+    public AutoEntity(ModelEntity model, EngineEntity engine) {
         this.model = model;
         this.engine = engine;
     }
@@ -35,14 +33,6 @@ public class AutoEntity {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getVin() {
-        return vin;
-    }
-
-    public void setVin(String vin) {
-        this.vin = vin;
     }
 
     public ModelEntity getModel() {

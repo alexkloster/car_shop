@@ -123,6 +123,11 @@ CREATE TABLE "order" (
 ALTER TABLE public.engine RENAME COLUMN pover TO power;
 
 
+alter table auto drop column vin;
+
+
+alter table orders
+	add vin varchar(20);
 
 
 

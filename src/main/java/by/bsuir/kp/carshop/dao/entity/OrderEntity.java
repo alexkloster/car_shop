@@ -24,6 +24,8 @@ public class OrderEntity {
     @JoinColumn(name = "auto_id")
     private AutoEntity auto;
 
+    private String vin;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private ClientEntity client;
@@ -32,12 +34,13 @@ public class OrderEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    public OrderEntity(Double price, Date firstDate, Date secondDate, Boolean ready, AutoEntity auto, ClientEntity client, UserEntity user) {
+    public OrderEntity(Double price, Date firstDate, Date secondDate, Boolean ready, AutoEntity auto, String vin, ClientEntity client, UserEntity user) {
         this.price = price;
         this.firstDate = firstDate;
         this.secondDate = secondDate;
         this.ready = ready;
         this.auto = auto;
+        this.vin = vin;
         this.client = client;
         this.user = user;
     }
@@ -93,6 +96,14 @@ public class OrderEntity {
         this.auto = auto;
     }
 
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
     public ClientEntity getClient() {
         return client;
     }
@@ -109,3 +120,4 @@ public class OrderEntity {
         this.user = user;
     }
 }
+

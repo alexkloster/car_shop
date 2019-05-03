@@ -2,11 +2,13 @@ package by.bsuir.kp.carshop.sevice.impl;
 
 import by.bsuir.kp.carshop.dao.entity.ModelEntity;
 import by.bsuir.kp.carshop.dao.repository.ModelRepository;
+import by.bsuir.kp.carshop.filtering.ModelFiltering;
 import by.bsuir.kp.carshop.sevice.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ModelServiceImpl implements ModelService {
@@ -17,5 +19,41 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public List<ModelEntity> getAllModels() {
         return modelRepository.findAll();
+    }
+
+    @Override
+    public List<ModelEntity> filterModels(ModelFiltering filtering) {
+        List<ModelEntity> all = modelRepository.findAll();
+        return all.stream().filter(model -> {
+            boolean name = true;
+            if(filtering.getName() != null && !filtering.getName().isEmpty()) {
+                name = filtering.getName().equals(model.getName());
+            }
+            boolean manufactureName = true;
+            if(filtering.getManufactureName() != null && !filtering.getManufactureName().isEmpty()) {
+                manufactureName = filtering.getManufactureName().equals(model.getManufacture().getName());
+            }
+            boolean vehicleType = true;
+            if(filtering.getVehicleTypeId() != null) {
+                vehicleType = filtering.getVehicleTypeId() == model.getVehicleType().getId();
+            }
+            boolean price = model.getCost() >= filtering.getMinCost() && model.getCost()<=filtering.getMaxCost();
+            return name && manufactureName && vehicleType && price;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public ModelEntity getById(Long id) {
+        return modelRepository.findById(id).orElse(new ModelEntity());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        modelRepository.deleteById(id);
+    }
+
+    @Override
+    public ModelEntity save(ModelEntity modelEntity) {
+        return modelRepository.save(modelEntity);
     }
 }

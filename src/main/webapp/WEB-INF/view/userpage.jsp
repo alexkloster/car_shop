@@ -413,7 +413,10 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-lg-4 offset-lg-8">
+                                <div class="col-lg-4">
+                                    <a class="btn btn-primary" href="/engine">Сбросить</a>
+                                </div>
+                                <div class="col-lg-4 offset-lg-4">
                                     <div class="float-right">
                                         <input type="submit" class="btn btn-primary"
                                                value="Отфильтровать"/>
@@ -457,6 +460,415 @@
                     </div>
                 </div>
             </c:when>
+            <c:when test="${mode=='MODE_MODELS'}">
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="float-right">
+                                <a class="btn btn-primary" href="/model-new">Добавить новую модель</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <form class="form-horizontal col-lg-12" method="POST"
+                              action="/model-filter">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label class="control-label col-lg-12">Марка</label>
+                                    <form:input type="hidden" path="modelFilter.manufactureName" name="manufactureName"
+                                                id="manufactureName"/>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" id="manufactureNameSelect">
+                                            <option></option>
+                                            <c:forEach var="manufacture" items="${manufactures}">
+                                                <option value="${manufacture.name}"><c:out
+                                                        value="${manufacture.name}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="control-label col-lg-12">Название</label>
+                                    <form:input type="hidden" path="modelFilter.name" name="modelName"
+                                                id="modelName"/>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" id="modelNameSelect">
+                                            <option></option>
+                                            <c:forEach var="model" items="${models}">
+                                                <option value="${model.name}"><c:out
+                                                        value="${model.name}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="control-label col-lg-12">Тип кузова</label>
+                                    <form:input type="hidden" path="modelFilter.vehicleTypeId" name="vehicleTypeId"
+                                                id="vehicleTypeId"/>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" id="vehicleTypeIdSelect">
+                                            <option></option>
+                                            <c:forEach var="vehicleType" items="${vehicleTypes}">
+                                                ${vehicleType.id}
+                                                <option value="${vehicleType.id}"><c:out
+                                                        value="${vehicleType.name}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+
+                                <div class="col-lg-3">
+                                    <div class="col-lg-12">
+                                        <div class="float-right"></div>
+                                        <form:input type="hidden" path="modelFilter.minCost"
+                                                    name="modelMinCostHidden"
+                                                    id="modelMinCostHidden" value="1000"/>
+                                        <form:input type="hidden" path="modelFilter.maxCost"
+                                                    name="modelMaxCostHidden"
+                                                    id="modelMaxCostHidden" value="2000"/>
+                                        <label class="control-label col-lg-12">Цена</label>
+
+                                        <label class="control-label col-lg-4" for="modelMinCost">От:</label>
+                                        <input id="modelMinCost" type="number" class="col-lg-8" value="10000" min="5000"
+                                               max="10000" step="1000" data-suffix="$">
+
+                                        <label class="control-label col-lg-4" for="modelMaxCost">До:</label>
+                                        <input id="modelMaxCost" type="number" class="col-lg-8" value="20000" min="5000"
+                                               max="600000" step="1000" data-suffix="$">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <a class="btn btn-primary" href="/model">Сбросить</a>
+                                </div>
+                                <div class="col-lg-4 offset-lg-4">
+                                    <div class="float-right">
+                                        <input type="submit" class="btn btn-primary"
+                                               value="Отфильтровать"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <hr>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Марка</th>
+                                    <th>Модель</th>
+                                    <th>Тип</th>
+                                    <th>Цена</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="model" items="${models }">
+                                    <tr>
+                                        <td>${model.manufacture.name}</td>
+                                        <td>${model.name}</td>
+                                        <td>${model.vehicleType.name}</td>
+                                        <td>${model.cost}$</td>
+                                        <td><a href="/model-edit?id=${model.id }"><i class="fa fa-edit"></i> </a></td>
+                                        <td><a href="/model-delete?id=${model.id }"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+            <c:when test="${mode=='MODE_AUTOMOBILES'}">
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="float-right">
+                                <a class="btn btn-primary" href="/car-new">Добавить новый автомобиль</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-header" id="filteringBlockHeader">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#filteringBlock" aria-expanded="true"
+                                        aria-controls="filteringBlock">
+                                    Фильрация
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="filteringBlock" class="collapse" aria-labelledby="filteringBlockHeader"
+                             data-parent="#filters">
+                            <div class="card-body">
+                                <div class="row" id="filters">
+                                    <form class="form-horizontal col-lg-12" method="POST"
+                                          action="/car-filter">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                            data-target="#collapseModel" aria-expanded="true"
+                                                            aria-controls="collapseModel">
+                                                        Параметры автомобиля
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapseModel" class="collapse" aria-labelledby="headingOne"
+                                                 data-parent="#filters">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="control-label col-lg-12">Марка</label>
+                                                            <form:input type="hidden" path="autoFilter.model.manufactureName"
+                                                                        name="autoManufactureName"
+                                                                        id="autoManufactureName"/>
+                                                            <div class="col-lg-12">
+                                                                <select class="form-control" id="autoManufactureNameSelect">
+                                                                    <option></option>
+                                                                    <c:forEach var="manufacture" items="${manufactures}">
+                                                                        <option value="${manufacture.name}"><c:out
+                                                                                value="${manufacture.name}"/></option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="control-label col-lg-12">Модель</label>
+                                                            <form:input type="hidden" path="autoFilter.model.name"
+                                                                        name="autoModelName"
+                                                                        id="autoModelName"/>
+                                                            <div class="col-lg-12">
+                                                                <select class="form-control" id="autoModelNameSelect">
+                                                                    <option></option>
+                                                                    <c:forEach var="model" items="${models}">
+                                                                        <option value="${model.name}"><c:out
+                                                                                value="${model.name}"/></option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label class="control-label col-lg-12">Тип кузова</label>
+                                                            <form:input type="hidden" path="autoFilter.model.vehicleTypeId"
+                                                                        name="autoVehicleTypeId"
+                                                                        id="autoVehicleTypeId"/>
+                                                            <div class="col-lg-12">
+                                                                <select class="form-control" id="autoVehicleTypeIdSelect">
+                                                                    <option></option>
+                                                                    <c:forEach var="vehicleType" items="${vehicleTypes}">
+                                                                        ${vehicleType.id}
+                                                                        <option value="${vehicleType.id}"><c:out
+                                                                                value="${vehicleType.name}"/></option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                            data-target="#collapseEngine" aria-expanded="true"
+                                                            aria-controls="collapseEngine">
+                                                        Параметры двигателя
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapseEngine" class="collapse" aria-labelledby="headingTwo"
+                                                 data-parent="#filters">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="control-label col-lg-12">Двигатель</label>
+                                                            <form:input type="hidden" path="autoFilter.engine.name"
+                                                                        name="autoEngineName"
+                                                                        id="autoEngineName"/>
+                                                            <div class="col-lg-12">
+                                                                <select class="form-control" id="autoEngineNameSelect">
+                                                                    <option></option>
+                                                                    <c:forEach var="engine" items="${engines}">
+                                                                        <option value="${engine.name}"><c:out
+                                                                                value="${engine.name}"/></option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="col-lg-12">
+                                                                <form:input type="hidden" path="autoFilter.engine.minPower"
+                                                                            name="autoMinPowerHidden"
+                                                                            id="autoMinPowerHidden" value="100"/>
+                                                                <form:input type="hidden" path="autoFilter.engine.maxPower"
+                                                                            name="autoMaxPowerHidden"
+                                                                            id="autoMaxPowerHidden" value="200"/>
+                                                                <label class="control-label col-lg-12">Мощность</label>
+
+                                                                <label class="control-label col-lg-4" for="autoMinPower">От:</label>
+                                                                <input id="autoMinPower" type="number" class="col-lg-8" value="100"
+                                                                       min="80"
+                                                                       max="500" step="10" data-suffix="лс">
+
+                                                                <label class="control-label col-lg-4" for="autoMaxPower">До:</label>
+                                                                <input id="autoMaxPower" type="number" class="col-lg-8" value="200"
+                                                                       min="80"
+                                                                       max="500" step="10" data-suffix="лс">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="col-lg-12">
+                                                                <div class="float-right"></div>
+                                                                <form:input type="hidden" path="autoFilter.engine.minConsumption"
+                                                                            name="autoMinConsumptionHidden"
+                                                                            id="autoMinConsumptionHidden" value="5"/>
+                                                                <form:input type="hidden" path="autoFilter.engine.maxConsumption"
+                                                                            name="autoMaxConsumptionHidden"
+                                                                            id="autoMaxConsumptionHidden" value="10"/>
+                                                                <label class="control-label col-lg-12">Расход топлива</label>
+
+                                                                <label class="control-label col-lg-4"
+                                                                       for="autoMinConsumption">От:</label>
+                                                                <input id="autoMinConsumption" type="number" class="col-lg-8"
+                                                                       value="5"
+                                                                       min="4"
+                                                                       max="20" step="1" data-suffix="л/100км">
+
+                                                                <label class="control-label col-lg-4"
+                                                                       for="autoMaxConsumption">До:</label>
+                                                                <input id="autoMaxConsumption" type="number" class="col-lg-8"
+                                                                       value="10"
+                                                                       min="4"
+                                                                       max="20" step="1" data-suffix="л/100км">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                            data-target="#collapseCost" aria-expanded="true"
+                                                            aria-controls="collapseCost">
+                                                        Стоимость
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapseCost" class="collapse" aria-labelledby="headingThree"
+                                                 data-parent="#filters">
+                                                <div class="card-body">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-4">
+                                                            <div class="col-lg-12">
+                                                                <form:input type="hidden" path="autoFilter.minCost"
+                                                                            name="autoMinCostHidden"
+                                                                            id="autoMinCostHidden" value="1000"/>
+                                                                <form:input type="hidden" path="autoFilter.maxCost"
+                                                                            name="autoMaxCostHidden"
+                                                                            id="autoMaxCostHidden" value="2000"/>
+                                                                <label class="control-label col-lg-12">Цена</label>
+
+                                                                <label class="control-label col-lg-4" for="autoMinCost">От:</label>
+                                                                <input id="autoMinCost" type="number" class="col-lg-8" value="10000"
+                                                                       min="5000"
+                                                                       max="10000" step="1000" data-suffix="$">
+
+                                                                <label class="control-label col-lg-4" for="modelMaxCost">До:</label>
+                                                                <input id="autoMaxCost" type="number" class="col-lg-8" value="20000"
+                                                                       min="5000"
+                                                                       max="600000" step="1000" data-suffix="$">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <a class="btn btn-primary" href="/car">Сбросить</a>
+                                            </div>
+                                            <div class="col-lg-4 offset-lg-4">
+                                                <div class="float-right">
+                                                    <input type="submit" class="btn btn-primary"
+                                                           value="Отфильтровать"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <hr>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Марка</th>
+                                    <th>Модель</th>
+                                    <th>Тип</th>
+                                    <th>Двигатель</th>
+                                    <th>Мощность</th>
+                                    <th>Объем</th>
+                                    <th>Расход</th>
+                                    <th>Цена</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="car" items="${cars }">
+                                    <tr>
+                                        <td>${car.model.manufacture.name}</td>
+                                        <td>${car.model.name}</td>
+                                        <td>${car.model.vehicleType.name}</td>
+                                        <td>${car.engine.name}</td>
+                                        <td>${car.engine.power}лс</td>
+                                        <td>${car.engine.capacity}см<sup>3</sup></td>
+                                        <td>${car.engine.consumption}л/100км</td>
+                                        <td>${car.engine.cost + car.model.cost}$</td>
+                                        <td><a href="/model-edit?id=${car.id }"><i class="fa fa-edit"></i> </a>
+                                        </td>
+                                        <td><a href="/model-delete?id=${car.id }"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+
             <c:when test="${mode=='MODE_ENGINE_EDIT'}">
                 <br>
                 <div class="container">
@@ -517,6 +929,79 @@
                     </div>
                 </div>
             </c:when>
+            <c:when test="${mode=='MODE_MODEL_EDIT'}">
+                <br>
+                <div class="container">
+                    <div class="col-lg-6 offset-lg-3">
+                        <form class="form-horizontal" method="POST" action="/model-save">
+                            <div class="col-lg-12">
+                                <form:input type="hidden" name="id" path="model.id"/>
+
+
+                                <label class="control-label col-lg-12">Марка</label>
+                                <div class="form-group">
+
+                                    <form:input type="hidden" path="model.manufacture.id" name="manufactureModelId"
+                                                id="manufactureModelId"/>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" id="manufactureModelSelect">
+                                            <option value="${model.manufacture.id}"><c:out
+                                                    value="${model.manufacture.name}"/></option>
+                                            <c:forEach var="manufacture" items="${manufactures}">
+                                                <option value="${manufacture.id}"><c:out
+                                                        value="${manufacture.name}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Название</label>
+                                    <div class="col-md-12">
+                                        <form:input type="text" class="form-control" name="name"
+                                                    path="model.name"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label class="control-label col-lg-12">Тип кузова</label>
+                                    <form:input type="hidden" path="model.vehicleType.id" name="vehicleTypeModelId"
+                                                id="vehicleTypeModelId"/>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" id="vehicleTypeModelSelect">
+                                            <option value="${model.vehicleType.id}"><c:out
+                                                    value="${model.vehicleType.name}"/></option>
+                                            <c:forEach var="vehicleType" items="${vehicleTypes}">
+                                                <option value="${vehicleType.id}"><c:out
+                                                        value="${vehicleType.name}"/></option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Цена</label>
+                                    <div class="col-md-12">
+                                        <form:input type="number" class="form-control" name="cost"
+                                                    path="model.cost" pattern="[0-9]*" min="10000" max="600000"
+                                                    step="1000" data-suffix="$"/>
+                                    </div>
+                                </div>
+                                <hr>
+                                <br>
+                                <br>
+
+                                <div class="form-group ">
+                                    <div class="col-lg-6 offset-lg-5">
+                                        <input type="submit" class="btn btn-primary" value="Сохранить"
+                                               id="saveModel"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </c:when>
         </c:choose>
     </div>
 
@@ -530,7 +1015,8 @@
                                                                           href="/welcome">Цептер Банк</a>»</span>
                     </div>
                     <div class="foo_info">
-                        Лицензия Национального банка Республики Беларусь N31 от 28 мая 2013 года на осуществление
+                        Лицензия Национального банка Республики Беларусь N31 от 28 мая 2013 года на
+                        осуществление
                         банковской деятельности. <br>
                         <br>
                     </div>
@@ -585,6 +1071,7 @@
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/app.js"></script>
 <script src="static/js/engine.js"></script>
+<script src="static/js/model.js"></script>
 <script src="static/js/bootstrap-input-spinner.js"></script>
 <script>
     $("input[type='number']").inputSpinner()
