@@ -1,5 +1,7 @@
 package by.bsuir.kp.carshop.filtering;
 
+import org.springframework.ui.Model;
+
 public class OrderFiltering {
     private Long userId;
     private Long clientId;
@@ -7,18 +9,21 @@ public class OrderFiltering {
     private Long modelId;
     private Long engineId;
     private Boolean ready;
+    private AutoFiltering auto;
 
 
-    public OrderFiltering(Long userId, Long clientId, Long manufactureId, Long modelId, Long engineId, Boolean ready) {
+    public OrderFiltering(Long userId, Long clientId, Long manufactureId, Long modelId, Long engineId, Boolean ready, AutoFiltering auto) {
         this.userId = userId;
         this.clientId = clientId;
         this.manufactureId = manufactureId;
         this.modelId = modelId;
         this.engineId = engineId;
         this.ready = ready;
+        this.auto = auto;
     }
 
     public OrderFiltering() {
+        this.auto = new AutoFiltering();
     }
 
     public Long getUserId() {
@@ -69,6 +74,13 @@ public class OrderFiltering {
         this.ready = ready;
     }
 
+    public AutoFiltering getAuto() {
+        return auto;
+    }
+
+    public void setAuto(AutoFiltering auto) {
+        this.auto = auto;
+    }
 
     @Override
     public String toString() {

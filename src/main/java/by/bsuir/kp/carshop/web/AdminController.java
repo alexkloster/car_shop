@@ -1,5 +1,6 @@
 package by.bsuir.kp.carshop.web;
 
+import by.bsuir.kp.carshop.ChartData;
 import by.bsuir.kp.carshop.dao.entity.*;
 import by.bsuir.kp.carshop.enumerated.Role;
 import by.bsuir.kp.carshop.sevice.*;
@@ -8,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -87,6 +85,7 @@ public class AdminController {
     @RequestMapping("/statistic")
     public String statistic(HttpServletRequest request, Model model) {
         request.setAttribute("orders", orderService.getAllOrders());
+        request.setAttribute("users", userService.getAllUsers());
         filteringOptions(request, model);
 
         return "adminpage";
@@ -123,6 +122,26 @@ public class AdminController {
         model.addAttribute("filtering", new OrderFiltering());
     }
 
+
+    @GetMapping("/getModelStatisticAdmin")
+    @ResponseBody
+    public ChartData modelInfo(@RequestParam Long id){
+        return orderService.getModelData(userService.findById(id));
+    }
+
+    @GetMapping("/getEngineStatisticAdmin")
+    @ResponseBody
+    public ChartData engineInfo(@RequestParam Long id){
+
+        return orderService.getEngineData(userService.findById(id));
+    }
+
+    @GetMapping("/getClientStatisticAdmin")
+    @ResponseBody
+    public ChartData clientInfo(@RequestParam Long id){
+
+        return orderService.getClientData(userService.findById(id));
+    }
 
 
 

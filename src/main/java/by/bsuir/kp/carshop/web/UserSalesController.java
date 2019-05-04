@@ -1,15 +1,20 @@
 package by.bsuir.kp.carshop.web;
 
+import by.bsuir.kp.carshop.ChartData;
+import by.bsuir.kp.carshop.dao.entity.EngineEntity;
+import by.bsuir.kp.carshop.dao.entity.OrderEntity;
 import by.bsuir.kp.carshop.filtering.OrderFiltering;
 import by.bsuir.kp.carshop.sevice.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserSalesController {
@@ -45,6 +50,28 @@ public class UserSalesController {
         return "userSales";
     }
 
+    @GetMapping("/getModelStatistic")
+    @ResponseBody
+    public ChartData modelInfo(){
+
+        return orderService.getModelData(userService.getCurrentUser());
+    }
+
+    @GetMapping("/getEngineStatistic")
+    @ResponseBody
+    public ChartData engineInfo(){
+
+        return orderService.getEngineData(userService.getCurrentUser());
+    }
+
+    @GetMapping("/getClientStatistic")
+    @ResponseBody
+    public ChartData clientInfo(){
+
+        return orderService.getClientData(userService.getCurrentUser());
+    }
+
+
     private void filteringOptions(HttpServletRequest request, Model model) {
         request.setAttribute("models", modelService.getAllModels());
         request.setAttribute("clients", clientService.getAllClients());
@@ -55,4 +82,7 @@ public class UserSalesController {
 
         model.addAttribute("filtering", new OrderFiltering());
     }
+
+
+
 }

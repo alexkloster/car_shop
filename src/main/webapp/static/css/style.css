@@ -103,4 +103,21 @@ footer .undecor {
 
 
 
-
+.flot {
+    left: 0px;
+    top: 0px;
+    width: 610px;
+    height: 250px;
+}
+#flotTip {
+    padding: 3px 5px;
+    background-color: #000;
+    z-index: 100;
+    color: #fff;
+    opacity: .80;
+    filter: alpha(opacity=85);
+}
+.pieLabel div {
+    color: white !important;
+    text-shadow: 0 0 4px #000;
+}

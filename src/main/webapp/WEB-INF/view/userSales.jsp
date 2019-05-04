@@ -2,6 +2,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -28,6 +30,9 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
 
     <script src="static/js/bootstrap-input-spinner.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 
 </head>
 <body>
@@ -63,10 +68,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/purchase">Покупки</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/sales">Мои продажи</a>
+                                <a class="nav-link" href="/purchase">Мои продажи</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/exit">Выйти</a>
@@ -82,98 +84,139 @@
             <c:choose>
                 <c:when test="${mode=='MODE_STAT'}">
                     <br>
-                    <form class="form-horizontal col-lg-12" method="POST"
-                          action="/filter-orders">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <br>
 
-                                <label class="control-label col-lg-12">Марка</label>
-                                <form:input type="hidden" path="filtering.manufactureId" name="manufactureId"
-                                            id="manufactureId"/>
-                                <div class="col-lg-12">
-                                    <select class="form-control" id="manufactureSelect">
-                                        <option></option>
-                                        <c:forEach var="manufacture" items="${manufactures}">
-                                            <option value="${manufacture.id}"><c:out
-                                                    value="${manufacture.name}"/></option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4">
-                                <label class="control-label col-lg-12">Клиент</label>
-                                <form:input type="hidden" path="filtering.clientId" name="clientId"
-                                            id="clientId"/>
-                                <div class="col-lg-12">
-                                    <select class="form-control" id="clientSelect">
-                                        <option></option>
-                                        <c:forEach var="client" items="${clients}">
-                                            <option value="${client.id}"><c:out
-                                                    value="${client.name}"/></option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-
-                                <br>
-
-
-                                <label class="control-label col-lg-12">Модель</label>
-                                <form:input type="hidden" path="filtering.modelId" name="modelId"
-                                            id="modelId"/>
-                                <div class="col-lg-12">
-                                    <select class="form-control" id="modelSelect">
-                                        <option></option>
-                                        <c:forEach var="model" items="${models}">
-                                            <option value="${model.id}"><c:out
-                                                    value="${model.name}"/></option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <label class="control-label col-lg-12">Готовность</label>
-                                <form:input type="hidden" path="filtering.ready" name="readyFilter"
-                                            id="readyFilter"/>
-                                <div class="col-lg-12">
-                                    <select class="form-control" id="readySelect">
-                                        <option value="null"></option>
-                                        <option value="true"><c:out value="Готов"/></option>
-                                        <option value="false"><c:out value="Не готов"/></option>
-                                    </select>
-                                </div>
-
-                                <br>
-
-
-                                <label class="control-label col-lg-12">Двигатель</label>
-                                <form:input type="hidden" path="filtering.engineId" name="engineId"
-                                            id="engineId"/>
-                                <div class="col-lg-12">
-                                    <select class="form-control" id="engineSelect">
-                                        <option></option>
-                                        <c:forEach var="engine" items="${engines}">
-                                            <option value="${engine.id}"><c:out
-                                                    value="${engine.name}"/></option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapseModel" aria-expanded="true"
+                                        aria-controls="collapseModel">
+                                    Параметры фильтрации
+                                </button>
+                            </h5>
                         </div>
 
-                        <br>
+                        <div id="collapseModel" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#filters">
+                            <div class="card-body">
+                                <form class="form-horizontal col-lg-12" method="POST"
+                                      action="/filter-orders">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label class="control-label col-lg-12">Клиент</label>
+                                            <form:input type="hidden" path="filtering.clientId" name="clientId"
+                                                        id="clientId"/>
+                                            <div class="col-lg-12">
+                                                <select class="form-control" id="clientSelect">
+                                                    <option></option>
+                                                    <c:forEach var="client" items="${clients}">
+                                                        <option value="${client.id}"><c:out
+                                                                value="${client.name}"/></option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                            <br>
+                                            <label class="control-label col-lg-12">Готовность</label>
+                                            <form:input type="hidden" path="filtering.ready" name="readyFilter"
+                                                        id="readyFilter"/>
+                                            <div class="col-lg-12">
+                                                <select class="form-control" id="readySelect">
+                                                    <option value="null"></option>
+                                                    <option value="true"><c:out value="Готов"/></option>
+                                                    <option value="false"><c:out value="Не готов"/></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="control-label col-lg-12">Модель</label>
+                                            <form:input type="hidden" path="filtering.auto.model.name"
+                                                        name="autoModelId"
+                                                        id="autoModelId"/>
+                                            <form:input type="hidden" path="filtering.auto.model.manufactureName"
+                                                        name="autoManId"
+                                                        id="autoManId"/>
+                                            <div class="row">
+                                                <div class="col-lg-10">
+                                                    <select class="form-control" id="autoModelSelect">
+                                                        <option value="${model.id}"><c:out
+                                                                value="${model.manufacture.name} ${model.name}"/></option>
+                                                        <c:forEach var="model" items="${models}">
+                                                            <option value="${model.id}"><c:out
+                                                                    value="${model.manufacture.name} ${model.name}"/></option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <button type="button" id="openModelModal"
+                                                            class="btn btn-primary btn-sm"
+                                                            data-target="#modelInfoModal" data-toggle="modal">
+                                                        <i class="fa fa-info"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="control-label col-lg-12">Двигатель</label>
+                                            <form:input type="hidden" path="filtering.auto.engine.name" name="engineId"
+                                                        id="engineId"/>
 
-                        <div class="row">
+                                            <div class="row">
+                                                <div class="col-lg-10">
+                                                    <select class="form-control" id="autoEngineSelect">
+                                                        <option value="${car.engine.id}"><c:out
+                                                                value="${car.engine.name}"/></option>
+                                                        <c:forEach var="engine" items="${engines}">
+                                                            <option value="${engine.id}"><c:out
+                                                                    value="${engine.name}"/></option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <button type="button" id="openEngineModal"
+                                                            class="btn btn-primary btn-sm"
+                                                            data-target="#engineInfoModal" data-toggle="modal">
+                                                        <i class="fa fa-info"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="col-lg-6 offset-lg-6">
-                                <div class="float-right">
-                                    <input type="submit" class="btn btn-primary"
-                                           value="Отфильтровать"/>
-                                </div>
+                                    <br>
+
+                                    <div class="row">
+
+                                        <div class="col-lg-6 offset-lg-6">
+                                            <div class="float-right">
+                                                <input type="submit" class="btn btn-primary"
+                                                       value="Отфильтровать"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </form>
+                    </div>
+<br>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" id="modelStatisticModal" class="btn btn-primary btn-sm"
+                                    data-target="#statisticModal" data-toggle="modal">
+                                Статистика моделей
+                            </button>
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="button" id="engineStatisticModal" class="btn btn-primary btn-sm"
+                                    data-target="#statisticModal" data-toggle="modal">
+                                Статистика двигателей
+                            </button>
+                        </div>
+                        <div class="col-lg-4 float-right">
+                            <button type="button" id="clientStatisticModal" class="btn btn-primary btn-sm"
+                                    data-target="#statisticModal" data-toggle="modal">
+                                Статистика клиентов
+                            </button>
+                        </div>
+                    </div>
+
 
                     <br>
                     <div class="row">
@@ -207,7 +250,13 @@
                                         <td><fmt:formatDate value="${order.secondDate}" pattern="dd-MM-yyyy"/></td>
                                         <td>${order.user.name}</td>
                                         <td>${order.client.name}</td>
-                                        <td>${order.ready}</td>
+                                        <c:if test="${order.ready}">
+                                            <td>Готов</td>
+                                        </c:if>
+                                        <c:if test="${!order.ready}">
+                                            <td>Не готов</td>
+                                        </c:if>
+
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -377,6 +426,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="statisticModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Статистика продаж <span id="statisticType"></span></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -386,6 +452,7 @@
 <script src="static/js/engine.js"></script>
 <script src="static/js/model.js"></script>
 <script src="static/js/auto.js"></script>
+<script src="static/js/userSales.js"></script>
 <script src="static/js/bootstrap-input-spinner.js"></script>
 <script src="static/js/dist/jquery.inputmask.bundle.js"></script>
 
