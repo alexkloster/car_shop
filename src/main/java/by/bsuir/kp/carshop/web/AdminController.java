@@ -123,24 +123,39 @@ public class AdminController {
     }
 
 
-    @GetMapping("/getModelStatisticAdmin")
+    @GetMapping("/getModelStatisticAdmin/{id}")
     @ResponseBody
-    public ChartData modelInfo(@RequestParam Long id){
+    public ChartData modelInfo(@PathVariable Long id){
+        if(id.intValue() == -1){
+            return orderService.getModelData(null);
+        }
         return orderService.getModelData(userService.findById(id));
     }
 
-    @GetMapping("/getEngineStatisticAdmin")
+    @GetMapping("/getEngineStatisticAdmin/{id}")
     @ResponseBody
-    public ChartData engineInfo(@RequestParam Long id){
+    public ChartData engineInfo(@PathVariable Long id){
 
-        return orderService.getEngineData(userService.findById(id));
+        if(id.intValue() == -1){
+            return orderService.getEngineData(null);
+        }
+        return orderService.getEngineData(userService.findById(id));    }
+
+    @GetMapping("/getClientStatisticAdmin/{id}")
+    @ResponseBody
+    public ChartData clientInfo(@PathVariable Long id){
+
+        if(id.intValue() == -1){
+            return orderService.getClientData(null);
+        }
+        return orderService.getClientData(userService.findById(id));
     }
 
-    @GetMapping("/getClientStatisticAdmin")
+    @GetMapping("/getUserStatisticAdmin")
     @ResponseBody
-    public ChartData clientInfo(@RequestParam Long id){
+    public ChartData userInfo(){
 
-        return orderService.getClientData(userService.findById(id));
+        return orderService.getUserData();
     }
 
 

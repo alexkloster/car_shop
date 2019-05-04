@@ -1,9 +1,6 @@
 package by.bsuir.kp.carshop.dao.repository;
 
-import by.bsuir.kp.carshop.dao.entity.ClientEntity;
-import by.bsuir.kp.carshop.dao.entity.EngineEntity;
-import by.bsuir.kp.carshop.dao.entity.ModelEntity;
-import by.bsuir.kp.carshop.dao.entity.OrderEntity;
+import by.bsuir.kp.carshop.dao.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -50,4 +47,11 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long>, JpaSp
 
     @Query("SELECT COUNT(o) FROM OrderEntity o where o.client.id = ?1 and o.user.id = ?2 ")
     Integer findCountByClient(Long clientId, Long userId);
+
+
+    @Query("SELECT DISTINCT o.user FROM OrderEntity o")
+    Collection<UserEntity> findDistinctByUser();
+
+    @Query("SELECT COUNT(o) FROM OrderEntity o where o.user.id = ?1")
+    Integer findCountByUser(Long userId);
 }

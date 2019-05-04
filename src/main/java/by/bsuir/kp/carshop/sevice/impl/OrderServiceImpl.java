@@ -116,7 +116,21 @@ public class OrderServiceImpl implements OrderService {
             } else {
                 count.add(repository.findCountByClient(client.getId(), userEntity.getId()));
             }        });
-        return chartDataFromList(colors, names, count);    }
+        return chartDataFromList(colors, names, count);
+    }
+
+    @Override
+    public ChartData getUserData() {
+        Collection<UserEntity> users = repository.findDistinctByUser();
+        List<String> names = new ArrayList<>();
+        List<String> colors = generateColorsArray(users.size());
+        List<Integer> count = new ArrayList<>();
+        users.stream().forEach(user -> {
+            names.add(user.getName());
+                count.add(repository.findCountByUser(user.getId()));
+        });
+        return chartDataFromList(colors, names, count);
+    }
 
     private ChartData chartDataFromList(List<String> colors, List<String> names, List<Integer> count) {
         String[] colorArr = new String[colors.size()];

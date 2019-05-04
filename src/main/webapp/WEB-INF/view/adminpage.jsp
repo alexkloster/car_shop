@@ -22,6 +22,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 <body>
@@ -406,56 +407,54 @@
     <br>
     <footer class="navbar navbar-light bg-light">
         <div class="container bg-light">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="copy">© 2019 <span class="nowrap">ЗАО «<a class="spec_decor"
-                                                                          href="/welcome">Цептер Банк</a>»</span>
-                    </div>
-                    <div class="foo_info">
-                        Лицензия Национального банка Республики Беларусь N31 от 28 мая 2013 года на осуществление
-                        банковской деятельности. <br>
-                        <br>
-                    </div>
+            <div class="col-lg-4">
+                <div class="copy">© 2019 <span class="nowrap">ЗАО «<a class="spec_decor"
+                                                                      href="/welcome">4 Колеса</a>»</span>
                 </div>
+                <div class="foo_info">
+                    Лицензия  N31 от 28 мая 2013 года на осуществление
+                    торговой деятельности. <br>
+                    <br>
+                </div>
+            </div>
 
-                <div class="col-lg-4">
-                    <h4>Информация о банке</h4>
-                    <ul class="foo_nav">
+            <div class="col-lg-4">
+                <h4>Информация о нас</h4>
+                <ul class="foo_nav">
 
-                        <li><a href="/jobs" class="undecor">Вакансии</a></li>
+                    <li><a href="" class="undecor">Вакансии</a></li>
 
-                        <li><a href="/requisites" class="undecor">Реквизиты</a></li>
+                    <li><a href="" class="undecor">О нас</a></li>
 
-                    </ul>
-                    <div class="social_block">
-                        <div class="social_block_grid">
-                            <a href="https://www.facebook.com/myzepterbank/" target="_blank"
-                               class="social_block_item">
-                                <img src="/static/images/social_facebook.svg" alt="facebook">
-                            </a>
-                            <a href="https://vk.com/myzepterbank" target="_blank" class="social_block_item">
-                                <img src="/static/images/social_vk.svg" alt="vk">
-                            </a>
-                            <a href="https://www.instagram.com/zepterbank/" target="_blank"
-                               class="social_block_item">
-                                <img src="/static/images/social_instagram.svg" alt="instargram">
-                            </a>
-                        </div>
+                </ul>
+                <div class="social_block">
+                    <div class="social_block_grid">
+                        <a href="" target="_blank"
+                           class="social_block_item">
+                            <img src="/static/images/social_facebook.svg" alt="facebook">
+                        </a>
+                        <a href="" target="_blank" class="social_block_item">
+                            <img src="/static/images/social_vk.svg" alt="vk">
+                        </a>
+                        <a href="" target="_blank"
+                           class="social_block_item">
+                            <img src="/static/images/social_instagram.svg" alt="instargram">
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-lg-4">
-                    <h4>Клиенту</h4>
-                    <ul class="foo_nav">
+            <div class="col-lg-4">
+                <h4>Клиенту</h4>
+                <ul class="foo_nav">
 
-                        <li><a href="/contacts" class="undecor">Контакты</a></li>
+                    <li><a href="/" class="undecor">Контакты</a></li>
 
-                        <li><a href="/offices" class="undecor">Как нас найти</a></li>
+                    <li><a href="/" class="undecor">Как нас найти</a></li>
 
-                        <li><a href="/welcome" class="undecor">Цептер Онлайн</a></li>
+                    <li><a href="/welcome" class="undecor">4 Колеса онлайн</a></li>
 
-                    </ul>
-                </div>
+                </ul>
             </div>
         </div>
     </footer>
@@ -474,7 +473,7 @@
                 <div class="col-lg-12">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="col-lg-12">
-                            <div class="row">
+                            <div class="row user_select">
                                 <div class="col-lg-7">
 
                                     <select class="form-control" id="userSelect">

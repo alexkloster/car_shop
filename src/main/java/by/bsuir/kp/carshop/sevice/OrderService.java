@@ -22,4 +22,6 @@ public interface OrderService {
     ChartData getEngineData(UserEntity userEntity);
 
     ChartData getClientData(UserEntity userEntity);
+
+    ChartData getUserData();
 }
