@@ -14,15 +14,23 @@
     <meta http-equiv="Expires" content="sat, 01 Dec 2001 00:00:00 GMT">
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
     <title>tecno-tab | home</title>
+
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+
 
 </head>
 <body>
@@ -504,6 +512,105 @@
 </div>
 
 
+<div class="modal fade" id="modelInfoModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Информация о модели</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="control-label col-lg-12"><h5><span id="manufactureModelName"></span></h5></label>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Производитель</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="manufacture"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Тип</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="vehicleType"></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Модель</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="model"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Цена</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="price"></span><span>$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="engineInfoModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Информация о двигателе</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="control-label col-lg-12"><h5><span id="engineName"></span></h5></label>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Мощность</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="power"></span><span> лс</span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Объем</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="capacity"></span><span> см<sup>3</sup></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-12"><h6>Расход топлива</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="consumption"></span><span> л/100км</span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="control-label col-lg-12"><h6>Цена</h6></label>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span id="cost"></span><span>$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     $("input[type='number']").inputSpinner()
 </script>
@@ -514,5 +621,7 @@
 <script src="static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="static/js/app.js"></script>
 <script type="text/javascript" src="static/js/admin.js"></script>
+<script src="static/js/userSales.js"></script>
+
 </body>
 </html>

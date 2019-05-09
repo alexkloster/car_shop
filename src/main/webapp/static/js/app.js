@@ -7,8 +7,6 @@ $('#userSelect').on('change', function () {
 });
 
 
-
-
 $('#manufactureSelect').on('change', function () {
 
     var combo = document.getElementById("manufactureSelect");
@@ -40,9 +38,6 @@ $('#readySelect').on('change', function () {
     $("#readyFilter").val(capitalization.checked);
 
 });
-
-
-$("input[type='number']").inputSpinner();
 
 
 $('#readySelect1').on('change', function () {
@@ -92,7 +87,7 @@ $('#depositTypeSelect').on('change', function () {
         type: "GET",
 
         contentType: 'application/json; charset=utf-8',
-        success: function(resultData) {
+        success: function (resultData) {
             $("#depositSumm").attr({
                 "min": resultData.minSum,
                 "data-suffix": resultData.currency.currencyName
@@ -103,10 +98,11 @@ $('#depositTypeSelect').on('change', function () {
                 "step": resultData.term
             });
         },
-        error : function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
         },
 
-        timeout: 120000});
+        timeout: 120000
+    });
 
 });
 
@@ -119,7 +115,7 @@ $('[data-toggle="modal"]').on('click', function (e) {
         type: "GET",
 
         contentType: 'application/json; charset=utf-8',
-        success: function(deposit) {
+        success: function (deposit) {
             $("#depositDescription").text(deposit.depositType.description);
             $("#depositCurrency").text(deposit.depositType.currency.currencyName);
             $("#depositPercentage").text(deposit.depositType.percentage);
@@ -144,7 +140,7 @@ $('[data-toggle="modal"]').on('click', function (e) {
         type: "GET",
 
         contentType: 'application/json; charset=utf-8',
-        success: function(profit) {
+        success: function (profit) {
             $("#depositCurrentProfit").text(profit);
         }
     });
@@ -154,7 +150,7 @@ $('[data-toggle="modal"]').on('click', function (e) {
         type: "GET",
 
         contentType: 'application/json; charset=utf-8',
-        success: function(profit) {
+        success: function (profit) {
             $("#depositProfit").text(profit);
         }
     });
@@ -164,8 +160,8 @@ $('[data-toggle="modal"]').on('click', function (e) {
 $(document).ready(function ($) {
     $(".phone").inputmask({"mask": "+999 (99) 999-99-99"});
     $(".passportNumber").inputmask({"mask": "9999999"});
-    $(".passportSeries").inputmask({"mask":"AA"});
-    $(".paymentNumber").inputmask({"mask":"999999"});
+    $(".passportSeries").inputmask({"mask": "AA"});
+    $(".paymentNumber").inputmask({"mask": "999999"});
     $('.date').inputmask('9999-99-99', {placeholder: "yyyy-mm-dd"});
 });
 
