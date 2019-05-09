@@ -311,8 +311,10 @@
                                         <select class="form-control" id="engineNameSelect">
                                             <option></option>
                                             <c:forEach var="engine" items="${engines}">
-                                                <option value="${engine.name}"><c:out
-                                                        value="${engine.name}"/></option>
+                                                <option value="${engine.name}"
+                                                <c:if test="${engineFilter.name == engine.name}"> selected = 'selected' </c:if> >
+                                                    <c:out value="${engine.name}"/>
+                                                </option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -324,18 +326,18 @@
                                     <div class="col-lg-12">
                                         <form:input type="hidden" path="engineFilter.minPower"
                                                     name="engineMinPowerHidden"
-                                                    id="engineMinPowerHidden" value="100"/>
+                                                    id="engineMinPowerHidden" />
                                         <form:input type="hidden" path="engineFilter.maxPower"
                                                     name="engineMaxPowerHidden"
-                                                    id="engineMaxPowerHidden" value="200"/>
+                                                    id="engineMaxPowerHidden"/>
                                         <label class="control-label col-lg-12">Мощность</label>
 
                                         <label class="control-label col-lg-4" for="engineMinPower">От:</label>
-                                        <input id="engineMinPower" type="number" class="col-lg-8" value="100" min="80"
+                                        <input id="engineMinPower" type="number" class="col-lg-8" value="${engineFilter.minPower}" min="80"
                                                max="500" step="10" data-suffix="лс">
 
                                         <label class="control-label col-lg-4" for="engineMaxPower">До:</label>
-                                        <input id="engineMaxPower" type="number" class="col-lg-8" value="200" min="80"
+                                        <input id="engineMaxPower" type="number" class="col-lg-8" value="${engineFilter.maxPower}" min="80"
                                                max="500" step="10" data-suffix="лс">
 
                                     </div>
@@ -346,19 +348,19 @@
 
                                         <form:input type="hidden" path="engineFilter.minCapacity"
                                                     name="engineMinCapacityHidden"
-                                                    id="engineMinCapacityHidden" value="1000"/>
+                                                    id="engineMinCapacityHidden"/>
                                         <form:input type="hidden" path="engineFilter.maxCapacity"
                                                     name="engineMaxCapacityHidden"
-                                                    id="engineMaxCapacityHidden" value="2000"/>
+                                                    id="engineMaxCapacityHidden"/>
                                         <label class="control-label col-lg-12">Объем</label>
 
                                         <label class="control-label col-lg-4" for="engineMinCapacity">От:</label>
-                                        <input id="engineMinCapacity" type="number" class="col-lg-8" value="1000"
+                                        <input id="engineMinCapacity" type="number" class="col-lg-8" value="${engineFilter.minCapacity}"
                                                min="1000"
                                                max="4400" step="200" data-suffix="см<sup>3</sup>">
 
                                         <label class="control-label col-lg-4" for="engineMaxCapacity">До:</label>
-                                        <input id="engineMaxCapacity" type="number" class="col-lg-8" value="2000"
+                                        <input id="engineMaxCapacity" type="number" class="col-lg-8" value="${engineFilter.maxCapacity}"
                                                min="1000"
                                                max="4400" step="200" data-suffix="см<sup>3</sup>">
 
@@ -370,19 +372,19 @@
                                         <div class="float-right"></div>
                                         <form:input type="hidden" path="engineFilter.minConsumption"
                                                     name="engineMinConsumptionHidden"
-                                                    id="engineMinConsumptionHidden" value="5"/>
+                                                    id="engineMinConsumptionHidden"/>
                                         <form:input type="hidden" path="engineFilter.maxConsumption"
                                                     name="engineMaxConsumptionHidden"
-                                                    id="engineMaxConsumptionHidden" value="10"/>
+                                                    id="engineMaxConsumptionHidden"/>
                                         <label class="control-label col-lg-12">Расход топлива</label>
 
                                         <label class="control-label col-lg-4" for="engineMinConsumption">От:</label>
-                                        <input id="engineMinConsumption" type="number" class="col-lg-8" value="5"
+                                        <input id="engineMinConsumption" type="number" class="col-lg-8" value="${engineFilter.minConsumption}"
                                                min="4"
                                                max="20" step="1" data-suffix="л/100км">
 
                                         <label class="control-label col-lg-4" for="engineMaxConsumption">До:</label>
-                                        <input id="engineMaxConsumption" type="number" class="col-lg-8" value="10"
+                                        <input id="engineMaxConsumption" type="number" class="col-lg-8" value="${engineFilter.maxConsumption}"
                                                min="4"
                                                max="20" step="1" data-suffix="л/100км">
                                     </div>
@@ -393,18 +395,18 @@
                                         <div class="float-right"></div>
                                         <form:input type="hidden" path="engineFilter.minCost"
                                                     name="engineMinCostHidden"
-                                                    id="engineMinCostHidden" value="1000"/>
+                                                    id="engineMinCostHidden"/>
                                         <form:input type="hidden" path="engineFilter.maxCost"
                                                     name="engineMaxCostHidden"
-                                                    id="engineMaxCostHidden" value="2000"/>
+                                                    id="engineMaxCostHidden"/>
                                         <label class="control-label col-lg-12">Цена</label>
 
                                         <label class="control-label col-lg-4" for="engineMinCost">От:</label>
-                                        <input id="engineMinCost" type="number" class="col-lg-8" value="1000" min="500"
+                                        <input id="engineMinCost" type="number" class="col-lg-8" value="${engineFilter.minCost}" min="500"
                                                max="10000" step="100" data-suffix="$">
 
                                         <label class="control-label col-lg-4" for="engineMaxCost">До:</label>
-                                        <input id="engineMaxCost" type="number" class="col-lg-8" value="2000" min="500"
+                                        <input id="engineMaxCost" type="number" class="col-lg-8" value="${engineFilter.maxCost}" min="500"
                                                max="10000" step="100" data-suffix="$">
                                     </div>
                                 </div>
@@ -481,8 +483,12 @@
                                         <select class="form-control" id="manufactureNameSelect">
                                             <option></option>
                                             <c:forEach var="manufacture" items="${manufactures}">
-                                                <option value="${manufacture.name}"><c:out
-                                                        value="${manufacture.name}"/></option>
+                                                <option value="${manufacture.name}"
+                                                        <c:if test="${modelFilter.manufactureName==manufacture.name}">
+                                                            selected = 'selected'
+                                                        </c:if>>
+                                                    <c:out value="${manufacture.name}"/>
+                                                </option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -495,8 +501,12 @@
                                         <select class="form-control" id="modelNameSelect">
                                             <option></option>
                                             <c:forEach var="model" items="${models}">
-                                                <option value="${model.name}"><c:out
-                                                        value="${model.name}"/></option>
+                                                <option value="${model.name}"
+                                                        <c:if test="${modelFilter.name==model.name}">
+                                                            selected = 'selected'
+                                                        </c:if>>
+                                                    <c:out value="${model.name}"/>
+                                                </option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -510,8 +520,12 @@
                                             <option></option>
                                             <c:forEach var="vehicleType" items="${vehicleTypes}">
                                                 ${vehicleType.id}
-                                                <option value="${vehicleType.id}"><c:out
-                                                        value="${vehicleType.name}"/></option>
+                                                <option value="${vehicleType.id}"
+                                                        <c:if test="${modelFilter.vehicleTypeId==vehicleType.id}">
+                                                    selected = 'selected'
+                                                </c:if>>
+                                                    <c:out value="${vehicleType.name}"/>
+                                                </option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -525,18 +539,20 @@
                                         <div class="float-right"></div>
                                         <form:input type="hidden" path="modelFilter.minCost"
                                                     name="modelMinCostHidden"
-                                                    id="modelMinCostHidden" value="1000"/>
+                                                    id="modelMinCostHidden"/>
                                         <form:input type="hidden" path="modelFilter.maxCost"
                                                     name="modelMaxCostHidden"
-                                                    id="modelMaxCostHidden" value="2000"/>
+                                                    id="modelMaxCostHidden"/>
                                         <label class="control-label col-lg-12">Цена</label>
 
                                         <label class="control-label col-lg-4" for="modelMinCost">От:</label>
-                                        <input id="modelMinCost" type="number" class="col-lg-8" value="10000" min="5000"
-                                               max="10000" step="1000" data-suffix="$">
+                                        <input id="modelMinCost" type="number" class="col-lg-8"
+                                               value="${modelFilter.minCost}" min="5000" max="600000"
+                                               step="1000" data-suffix="$">
 
                                         <label class="control-label col-lg-4" for="modelMaxCost">До:</label>
-                                        <input id="modelMaxCost" type="number" class="col-lg-8" value="20000" min="5000"
+                                        <input id="modelMaxCost" type="number" class="col-lg-8"
+                                               value="${modelFilter.maxCost}" min="5000"
                                                max="600000" step="1000" data-suffix="$">
                                     </div>
                                 </div>
@@ -1453,7 +1469,7 @@
                                                                       href="/welcome">4 Колеса</a>»</span>
                 </div>
                 <div class="foo_info">
-                    Лицензия  N31 от 28 мая 2013 года на осуществление
+                    Лицензия N31 от 28 мая 2013 года на осуществление
                     торговой деятельности. <br>
                     <br>
                 </div>
@@ -1599,7 +1615,6 @@
         </div>
     </div>
 </div>
-
 
 
 <script src="static/js/jquery-1.11.1.min.js"></script>

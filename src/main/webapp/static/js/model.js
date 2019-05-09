@@ -25,11 +25,13 @@ $('#vehicleTypeIdSelect').change(function () {
 $('#modelMinCost').change(function () {
 
     var min = document.getElementById("modelMinCost").value;
+    if (document.getElementById("modelMaxCost").value !== '') {
+        $("#modelMaxCost").attr({
+            "min": min,
+            "val": min
+        });
+    }
 
-    $("#modelMaxCost").attr({
-        "min": min,
-        "val": min
-    });
     $("#modelMinCostHidden").val(min);
 
 });
@@ -38,11 +40,14 @@ $('#modelMaxCost').change(function () {
 
     var min = document.getElementById("modelMaxCost").value;
 
-    $("#modelMinCost").attr({
-        "max": min,
-        "val": min
+    if (document.getElementById("modelMinCost").value !== '') {
 
-    });
+        $("#modelMinCost").attr({
+            "max": min,
+            "val": min
+
+        });
+    }
     $("#modelMaxCostHidden").val(min);
 
 });

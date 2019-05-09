@@ -26,14 +26,43 @@ public class EngineServiceImpl implements EngineService {
         List<EngineEntity> engines = repository.findAll();
         return engines.stream().filter(engineEntity -> {
             boolean name = true;
-            if(filtering.getName()!=null && !filtering.getName().isEmpty()) {
+            if (filtering.getName() != null && !filtering.getName().isEmpty()) {
                 name = engineEntity.getName().equals(filtering.getName());
             }
-            boolean power = engineEntity.getPower() >= filtering.getMinPower() && engineEntity.getPower()<=filtering.getMaxPower();
-            boolean capacity = engineEntity.getCapacity() >= filtering.getMinCapacity() && engineEntity.getCapacity() <=filtering.getMaxCapacity();
-            boolean consumption = engineEntity.getConsumption() >= filtering.getMinConsumption() && engineEntity.getConsumption()<=filtering.getMaxConsumption();
-            boolean price = engineEntity.getCost() >= filtering.getMinCost() && engineEntity.getCost()<=filtering.getMaxCost();
-            return  name && power && capacity && consumption && price;
+            boolean minPower = true;
+            if (filtering.getMinPower() != null) {
+                minPower = engineEntity.getPower() >= filtering.getMinPower();
+            }
+            boolean maxPower = true;
+            if (filtering.getMaxPower() != null) {
+                maxPower = engineEntity.getPower() <= filtering.getMaxPower();
+            }
+            boolean minCapacity = true;
+            if (filtering.getMinCapacity() != null) {
+                minCapacity = engineEntity.getCapacity() >= filtering.getMinCapacity();
+            }
+            boolean maxCapacity = true;
+            if (filtering.getMaxCapacity() != null) {
+                maxCapacity = engineEntity.getCapacity() <= filtering.getMaxCapacity();
+            }
+            boolean minConsumption = true;
+            if (filtering.getMinConsumption() != null) {
+                minConsumption = engineEntity.getConsumption() >= filtering.getMinConsumption();
+            }
+            boolean maxConsumption = true;
+            if (filtering.getMaxConsumption() != null) {
+                maxConsumption = engineEntity.getConsumption() <= filtering.getMaxConsumption();
+            }
+            boolean minPrice = true;
+            if (filtering.getMinCost() != null) {
+                minPrice = engineEntity.getCost() >= filtering.getMinCost();
+            }
+            boolean maxPrice = true;
+            if (filtering.getMaxCost() != null) {
+                maxPrice = engineEntity.getCost() <= filtering.getMaxCost();
+            }
+
+            return name && minPower && maxPower && minCapacity && maxCapacity && minConsumption && maxConsumption && minPrice && maxPrice;
         }).collect(Collectors.toList());
     }
 

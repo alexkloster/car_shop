@@ -4,9 +4,9 @@ public class EngineFiltering {
 
     private String name;
 
-    private int minPower;
+    private Integer minPower;
 
-    private int maxPower;
+    private Integer maxPower;
 
     private Double minCapacity;
 
@@ -20,7 +20,7 @@ public class EngineFiltering {
 
     private Double maxCost;
 
-    public EngineFiltering(String name, int minPower, int maxPower, Double minCapacity, Double maxCapacity, Double minConsumption, Double maxConsumption, Double minCost, Double maxCost) {
+    public EngineFiltering(String name, Integer minPower, Integer maxPower, Double minCapacity, Double maxCapacity, Double minConsumption, Double maxConsumption, Double minCost, Double maxCost) {
         this.name = name;
         this.minPower = minPower;
         this.maxPower = maxPower;
@@ -43,19 +43,19 @@ public class EngineFiltering {
         this.name = name;
     }
 
-    public int getMinPower() {
+    public Integer getMinPower() {
         return minPower;
     }
 
-    public void setMinPower(int minPower) {
+    public void setMinPower(Integer minPower) {
         this.minPower = minPower;
     }
 
-    public int getMaxPower() {
+    public Integer getMaxPower() {
         return maxPower;
     }
 
-    public void setMaxPower(int maxPower) {
+    public void setMaxPower(Integer maxPower) {
         this.maxPower = maxPower;
     }
 

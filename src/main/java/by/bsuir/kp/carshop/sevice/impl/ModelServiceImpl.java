@@ -37,8 +37,15 @@ public class ModelServiceImpl implements ModelService {
             if(filtering.getVehicleTypeId() != null) {
                 vehicleType = filtering.getVehicleTypeId() == model.getVehicleType().getId();
             }
-            boolean price = model.getCost() >= filtering.getMinCost() && model.getCost()<=filtering.getMaxCost();
-            return name && manufactureName && vehicleType && price;
+            boolean minPrice = true;
+            if(filtering.getMinCost()!=null) {
+                minPrice = model.getCost() >= filtering.getMinCost();
+            }
+            boolean maxPrice = true;
+            if(filtering.getMaxCost()!=null) {
+                maxPrice = model.getCost() <= filtering.getMaxCost();
+            }
+            return name && manufactureName && vehicleType && maxPrice && minPrice;
         }).collect(Collectors.toList());
     }
 
