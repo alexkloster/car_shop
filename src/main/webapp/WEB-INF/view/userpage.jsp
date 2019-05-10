@@ -312,7 +312,7 @@
                                             <option></option>
                                             <c:forEach var="engine" items="${engines}">
                                                 <option value="${engine.name}"
-                                                <c:if test="${engineFilter.name == engine.name}"> selected = 'selected' </c:if> >
+                                                        <c:if test="${engineFilter.name == engine.name}"> selected = 'selected' </c:if> >
                                                     <c:out value="${engine.name}"/>
                                                 </option>
                                             </c:forEach>
@@ -326,18 +326,20 @@
                                     <div class="col-lg-12">
                                         <form:input type="hidden" path="engineFilter.minPower"
                                                     name="engineMinPowerHidden"
-                                                    id="engineMinPowerHidden" />
+                                                    id="engineMinPowerHidden"/>
                                         <form:input type="hidden" path="engineFilter.maxPower"
                                                     name="engineMaxPowerHidden"
                                                     id="engineMaxPowerHidden"/>
                                         <label class="control-label col-lg-12">Мощность</label>
 
                                         <label class="control-label col-lg-4" for="engineMinPower">От:</label>
-                                        <input id="engineMinPower" type="number" class="col-lg-8" value="${engineFilter.minPower}" min="80"
+                                        <input id="engineMinPower" type="number" class="col-lg-8"
+                                               value="${engineFilter.minPower}" min="80"
                                                max="500" step="10" data-suffix="лс">
 
                                         <label class="control-label col-lg-4" for="engineMaxPower">До:</label>
-                                        <input id="engineMaxPower" type="number" class="col-lg-8" value="${engineFilter.maxPower}" min="80"
+                                        <input id="engineMaxPower" type="number" class="col-lg-8"
+                                               value="${engineFilter.maxPower}" min="80"
                                                max="500" step="10" data-suffix="лс">
 
                                     </div>
@@ -355,12 +357,14 @@
                                         <label class="control-label col-lg-12">Объем</label>
 
                                         <label class="control-label col-lg-4" for="engineMinCapacity">От:</label>
-                                        <input id="engineMinCapacity" type="number" class="col-lg-8" value="${engineFilter.minCapacity}"
+                                        <input id="engineMinCapacity" type="number" class="col-lg-8"
+                                               value="${engineFilter.minCapacity}"
                                                min="1000"
                                                max="4400" step="200" data-suffix="см<sup>3</sup>">
 
                                         <label class="control-label col-lg-4" for="engineMaxCapacity">До:</label>
-                                        <input id="engineMaxCapacity" type="number" class="col-lg-8" value="${engineFilter.maxCapacity}"
+                                        <input id="engineMaxCapacity" type="number" class="col-lg-8"
+                                               value="${engineFilter.maxCapacity}"
                                                min="1000"
                                                max="4400" step="200" data-suffix="см<sup>3</sup>">
 
@@ -379,12 +383,14 @@
                                         <label class="control-label col-lg-12">Расход топлива</label>
 
                                         <label class="control-label col-lg-4" for="engineMinConsumption">От:</label>
-                                        <input id="engineMinConsumption" type="number" class="col-lg-8" value="${engineFilter.minConsumption}"
+                                        <input id="engineMinConsumption" type="number" class="col-lg-8"
+                                               value="${engineFilter.minConsumption}"
                                                min="4"
                                                max="20" step="1" data-suffix="л/100км">
 
                                         <label class="control-label col-lg-4" for="engineMaxConsumption">До:</label>
-                                        <input id="engineMaxConsumption" type="number" class="col-lg-8" value="${engineFilter.maxConsumption}"
+                                        <input id="engineMaxConsumption" type="number" class="col-lg-8"
+                                               value="${engineFilter.maxConsumption}"
                                                min="4"
                                                max="20" step="1" data-suffix="л/100км">
                                     </div>
@@ -402,11 +408,13 @@
                                         <label class="control-label col-lg-12">Цена</label>
 
                                         <label class="control-label col-lg-4" for="engineMinCost">От:</label>
-                                        <input id="engineMinCost" type="number" class="col-lg-8" value="${engineFilter.minCost}" min="500"
+                                        <input id="engineMinCost" type="number" class="col-lg-8"
+                                               value="${engineFilter.minCost}" min="500"
                                                max="10000" step="100" data-suffix="$">
 
                                         <label class="control-label col-lg-4" for="engineMaxCost">До:</label>
-                                        <input id="engineMaxCost" type="number" class="col-lg-8" value="${engineFilter.maxCost}" min="500"
+                                        <input id="engineMaxCost" type="number" class="col-lg-8"
+                                               value="${engineFilter.maxCost}" min="500"
                                                max="10000" step="100" data-suffix="$">
                                     </div>
                                 </div>
@@ -522,8 +530,8 @@
                                                 ${vehicleType.id}
                                                 <option value="${vehicleType.id}"
                                                         <c:if test="${modelFilter.vehicleTypeId==vehicleType.id}">
-                                                    selected = 'selected'
-                                                </c:if>>
+                                                            selected = 'selected'
+                                                        </c:if>>
                                                     <c:out value="${vehicleType.name}"/>
                                                 </option>
                                             </c:forEach>
@@ -662,8 +670,12 @@
                                                                     <option></option>
                                                                     <c:forEach var="manufacture"
                                                                                items="${manufactures}">
-                                                                        <option value="${manufacture.name}"><c:out
-                                                                                value="${manufacture.name}"/></option>
+                                                                        <option value="${manufacture.name}"
+                                                                                <c:if test="${autoFilter.model.manufactureName==manufacture.name}">
+                                                                                    selected = 'selected'
+                                                                                </c:if>>
+                                                                            <c:out value="${manufacture.name}"/>
+                                                                        </option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
@@ -677,8 +689,12 @@
                                                                 <select class="form-control" id="autoModelNameSelect">
                                                                     <option></option>
                                                                     <c:forEach var="model" items="${models}">
-                                                                        <option value="${model.name}"><c:out
-                                                                                value="${model.name}"/></option>
+                                                                        <option value="${model.name}"
+                                                                                <c:if test="${autoFilter.model.name==model.name}">
+                                                                                    selected = 'selected'
+                                                                                </c:if>>
+                                                                            <c:out
+                                                                                    value="${model.name}"/></option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
@@ -696,8 +712,12 @@
                                                                     <c:forEach var="vehicleType"
                                                                                items="${vehicleTypes}">
                                                                         ${vehicleType.id}
-                                                                        <option value="${vehicleType.id}"><c:out
-                                                                                value="${vehicleType.name}"/></option>
+                                                                        <option value="${vehicleType.id}"
+                                                                                <c:if test="${autoFilter.model.vehicleTypeId==vehicleType.id}">
+                                                                                    selected = 'selected'
+                                                                                </c:if>>
+                                                                            <c:out
+                                                                                    value="${vehicleType.name}"/></option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
@@ -731,8 +751,12 @@
                                                                 <select class="form-control" id="autoEngineNameSelect">
                                                                     <option></option>
                                                                     <c:forEach var="engine" items="${engines}">
-                                                                        <option value="${engine.name}"><c:out
-                                                                                value="${engine.name}"/></option>
+                                                                        <option value="${engine.name}"
+                                                                                <c:if test="${autoFilter.engine.name==engine.name}">
+                                                                                    selected = 'selected'
+                                                                                </c:if>>
+                                                                            <c:out value="${engine.name}"/>
+                                                                        </option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
@@ -742,24 +766,24 @@
                                                                 <form:input type="hidden"
                                                                             path="autoFilter.engine.minPower"
                                                                             name="autoMinPowerHidden"
-                                                                            id="autoMinPowerHidden" value="100"/>
+                                                                            id="autoMinPowerHidden"/>
                                                                 <form:input type="hidden"
                                                                             path="autoFilter.engine.maxPower"
                                                                             name="autoMaxPowerHidden"
-                                                                            id="autoMaxPowerHidden" value="200"/>
+                                                                            id="autoMaxPowerHidden"/>
                                                                 <label class="control-label col-lg-12">Мощность</label>
 
                                                                 <label class="control-label col-lg-4"
                                                                        for="autoMinPower">От:</label>
                                                                 <input id="autoMinPower" type="number" class="col-lg-8"
-                                                                       value="100"
+                                                                       value="${autoFilter.engine.minPower}"
                                                                        min="80"
                                                                        max="500" step="10" data-suffix="лс">
 
                                                                 <label class="control-label col-lg-4"
                                                                        for="autoMaxPower">До:</label>
                                                                 <input id="autoMaxPower" type="number" class="col-lg-8"
-                                                                       value="200"
+                                                                       value="${autoFilter.engine.maxPower}"
                                                                        min="80"
                                                                        max="500" step="10" data-suffix="лс">
                                                             </div>
@@ -770,11 +794,11 @@
                                                                 <form:input type="hidden"
                                                                             path="autoFilter.engine.minConsumption"
                                                                             name="autoMinConsumptionHidden"
-                                                                            id="autoMinConsumptionHidden" value="5"/>
+                                                                            id="autoMinConsumptionHidden"/>
                                                                 <form:input type="hidden"
                                                                             path="autoFilter.engine.maxConsumption"
                                                                             name="autoMaxConsumptionHidden"
-                                                                            id="autoMaxConsumptionHidden" value="10"/>
+                                                                            id="autoMaxConsumptionHidden"/>
                                                                 <label class="control-label col-lg-12">Расход
                                                                     топлива</label>
 
@@ -782,7 +806,7 @@
                                                                        for="autoMinConsumption">От:</label>
                                                                 <input id="autoMinConsumption" type="number"
                                                                        class="col-lg-8"
-                                                                       value="5"
+                                                                       value="${autoFilter.engine.minConsumption}"
                                                                        min="4"
                                                                        max="20" step="1" data-suffix="л/100км">
 
@@ -790,7 +814,7 @@
                                                                        for="autoMaxConsumption">До:</label>
                                                                 <input id="autoMaxConsumption" type="number"
                                                                        class="col-lg-8"
-                                                                       value="10"
+                                                                       value="${autoFilter.engine.maxConsumption}"
                                                                        min="4"
                                                                        max="20" step="1" data-suffix="л/100км">
                                                             </div>
@@ -820,23 +844,23 @@
                                                             <div class="col-lg-12">
                                                                 <form:input type="hidden" path="autoFilter.minCost"
                                                                             name="autoMinCostHidden"
-                                                                            id="autoMinCostHidden" value="1000"/>
+                                                                            id="autoMinCostHidden"/>
                                                                 <form:input type="hidden" path="autoFilter.maxCost"
                                                                             name="autoMaxCostHidden"
-                                                                            id="autoMaxCostHidden" value="2000"/>
+                                                                            id="autoMaxCostHidden"/>
                                                                 <label class="control-label col-lg-12">Цена</label>
 
                                                                 <label class="control-label col-lg-4"
                                                                        for="autoMinCost">От:</label>
                                                                 <input id="autoMinCost" type="number" class="col-lg-8"
-                                                                       value="10000"
                                                                        min="5000"
-                                                                       max="10000" step="1000" data-suffix="$">
+                                                                       value="${autoFilter.minCost}"
+                                                                       step="1000" data-suffix="$">
 
                                                                 <label class="control-label col-lg-4"
                                                                        for="modelMaxCost">До:</label>
                                                                 <input id="autoMaxCost" type="number" class="col-lg-8"
-                                                                       value="20000"
+                                                                       value="${autoFilter.maxCost}"
                                                                        min="5000"
                                                                        max="600000" step="1000" data-suffix="$">
                                                             </div>

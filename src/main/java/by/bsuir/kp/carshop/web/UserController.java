@@ -4,9 +4,7 @@ import by.bsuir.kp.carshop.dao.entity.*;
 import by.bsuir.kp.carshop.filtering.AutoFiltering;
 import by.bsuir.kp.carshop.filtering.EngineFiltering;
 import by.bsuir.kp.carshop.filtering.ModelFiltering;
-import by.bsuir.kp.carshop.filtering.OrderFiltering;
 import by.bsuir.kp.carshop.sevice.*;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -321,5 +318,17 @@ public class UserController {
         order.setReady(false);
         orderService.save(order);
         return sellAuto(request, model);
+    }
+
+    @RequestMapping("/sell-filter")
+    public String filterAutoSell(@ModelAttribute AutoFiltering autoFiltering, HttpServletRequest request, Model model) {
+
+        request.setAttribute("cars", autoService.filterCars(autoFiltering));
+
+        request.setAttribute("autoMode", "MODE_SELL");
+        request.setAttribute("mode", "MODE_AUTOMOBILES");
+
+        setCarAttributes(request, model, autoFiltering);
+        return "userpage";
     }
 }

@@ -18,4 +18,6 @@ public interface EngineService {
     EngineEntity save(EngineEntity engineEntity);
 
     void deleteById(Long id);
+
+    boolean checkEngine(EngineEntity engineEntity, EngineFiltering filtering);
 }

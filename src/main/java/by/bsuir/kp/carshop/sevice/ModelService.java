@@ -18,4 +18,6 @@ public interface ModelService {
     void deleteById(Long id);
 
     ModelEntity save(ModelEntity modelEntity);
+
+    boolean checkModel(ModelEntity model, ModelFiltering filtering);
 }

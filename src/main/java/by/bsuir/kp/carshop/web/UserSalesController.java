@@ -1,20 +1,14 @@
 package by.bsuir.kp.carshop.web;
 
 import by.bsuir.kp.carshop.ChartData;
-import by.bsuir.kp.carshop.dao.entity.EngineEntity;
-import by.bsuir.kp.carshop.dao.entity.OrderEntity;
 import by.bsuir.kp.carshop.filtering.OrderFiltering;
 import by.bsuir.kp.carshop.sevice.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class UserSalesController {

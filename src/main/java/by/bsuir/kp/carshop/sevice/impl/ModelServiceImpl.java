@@ -24,29 +24,7 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public List<ModelEntity> filterModels(ModelFiltering filtering) {
         List<ModelEntity> all = modelRepository.findAll();
-        return all.stream().filter(model -> {
-            boolean name = true;
-            if(filtering.getName() != null && !filtering.getName().isEmpty()) {
-                name = filtering.getName().equals(model.getName());
-            }
-            boolean manufactureName = true;
-            if(filtering.getManufactureName() != null && !filtering.getManufactureName().isEmpty()) {
-                manufactureName = filtering.getManufactureName().equals(model.getManufacture().getName());
-            }
-            boolean vehicleType = true;
-            if(filtering.getVehicleTypeId() != null) {
-                vehicleType = filtering.getVehicleTypeId() == model.getVehicleType().getId();
-            }
-            boolean minPrice = true;
-            if(filtering.getMinCost()!=null) {
-                minPrice = model.getCost() >= filtering.getMinCost();
-            }
-            boolean maxPrice = true;
-            if(filtering.getMaxCost()!=null) {
-                maxPrice = model.getCost() <= filtering.getMaxCost();
-            }
-            return name && manufactureName && vehicleType && maxPrice && minPrice;
-        }).collect(Collectors.toList());
+        return all.stream().filter(model -> checkModel(model, filtering)).collect(Collectors.toList());
     }
 
     @Override
@@ -62,5 +40,31 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public ModelEntity save(ModelEntity modelEntity) {
         return modelRepository.save(modelEntity);
+    }
+
+
+    @Override
+    public boolean checkModel(ModelEntity model, ModelFiltering filtering){
+        boolean name = true;
+        if(filtering.getName() != null && !filtering.getName().isEmpty()) {
+            name = filtering.getName().equals(model.getName());
+        }
+        boolean manufactureName = true;
+        if(filtering.getManufactureName() != null && !filtering.getManufactureName().isEmpty()) {
+            manufactureName = filtering.getManufactureName().equals(model.getManufacture().getName());
+        }
+        boolean vehicleType = true;
+        if(filtering.getVehicleTypeId() != null) {
+            vehicleType = filtering.getVehicleTypeId().equals(model.getVehicleType().getId());
+        }
+        boolean minPrice = true;
+        if(filtering.getMinCost()!=null) {
+            minPrice = model.getCost() >= filtering.getMinCost();
+        }
+        boolean maxPrice = true;
+        if(filtering.getMaxCost()!=null) {
+            maxPrice = model.getCost() <= filtering.getMaxCost();
+        }
+        return name && manufactureName && vehicleType && maxPrice && minPrice;
     }
 }
