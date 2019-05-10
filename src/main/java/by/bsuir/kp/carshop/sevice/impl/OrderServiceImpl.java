@@ -8,6 +8,7 @@ import by.bsuir.kp.carshop.sevice.EngineService;
 import by.bsuir.kp.carshop.sevice.OrderService;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,27 +26,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderEntity> filterOrders(OrderFiltering params) {
-//        if(params.getClientId() != null) {
-//            ClientEntity clientEntity = new ClientEntity();
-//            clientEntity.setId(params.getClientId());
-//            filter.addCondition(new Condition.Builder().setComparison(Comparison.eq).setField("client").setValue(clientEntity).build());
-//        }
-//        if(params.getEngineId() != null) {
-//            filter.addCondition(new Condition.Builder().setComparison(Comparison.eq).setField("auto.engine.id").setValue(params.getEngineId()).build());
-//        }
-//        if(params.getManufactureId() != null) {
-//            filter.addCondition(new Condition.Builder().setComparison(Comparison.eq).setField("auto.model.manufacture.id").setValue(params.getManufactureId()).build());
-//        }
-//        if(params.getModelId() != null) {
-//            filter.addCondition(new Condition.Builder().setComparison(Comparison.eq).setField("auto.model.id").setValue(params.getModelId()).build());
-//        }
-//        if(params.getUserId() != null) {
-//            filter.addCondition(new Condition.Builder().setComparison(Comparison.eq).setField("user.id").setValue(params.getUserId()).build());
-//        }
-//        if (params.getReady() != null) {
-//            filter.addCondition(new Condition.Builder().setComparison(Comparison.eq).setField("ready").setValue(params.getReady()).build());
-//        }
-        return repository.findAll();
+        List<OrderEntity> orders = repository.findAll();
+        return orders.stream().filter(order -> {
+            boolean client = true;
+            if(params.getClientId() != null) {
+                client = order.getClient().getId().equals(params.getClientId());
+            }
+            boolean model = true;
+            if(params.getModelId() != null) {
+                model = order.getAuto().getModel().getId().equals(params.getModelId());
+            }
+            boolean engine = true;
+            if(params.getEngineId() != null) {
+                engine = order.getAuto().getEngine().getId().equals(params.getEngineId());
+            }
+            boolean ready = true;
+            if(params.getReady() != null) {
+                ready = order.getReady().equals(params.getReady());
+            }
+            return client && model && engine && ready;
+        }).collect(Collectors.toList());
     }
 
 

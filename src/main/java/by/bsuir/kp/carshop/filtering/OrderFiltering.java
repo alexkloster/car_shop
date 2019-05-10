@@ -5,25 +5,19 @@ import org.springframework.ui.Model;
 public class OrderFiltering {
     private Long userId;
     private Long clientId;
-    private Long manufactureId;
     private Long modelId;
     private Long engineId;
     private Boolean ready;
-    private AutoFiltering auto;
 
+    public OrderFiltering() {
+    }
 
-    public OrderFiltering(Long userId, Long clientId, Long manufactureId, Long modelId, Long engineId, Boolean ready, AutoFiltering auto) {
+    public OrderFiltering(Long userId, Long clientId, Long modelId, Long engineId, Boolean ready) {
         this.userId = userId;
         this.clientId = clientId;
-        this.manufactureId = manufactureId;
         this.modelId = modelId;
         this.engineId = engineId;
         this.ready = ready;
-        this.auto = auto;
-    }
-
-    public OrderFiltering() {
-        this.auto = new AutoFiltering();
     }
 
     public Long getUserId() {
@@ -40,14 +34,6 @@ public class OrderFiltering {
 
     public void setClientId(Long clientId) {
         this.clientId = clientId;
-    }
-
-    public Long getManufactureId() {
-        return manufactureId;
-    }
-
-    public void setManufactureId(Long manufactureId) {
-        this.manufactureId = manufactureId;
     }
 
     public Long getModelId() {
@@ -74,24 +60,16 @@ public class OrderFiltering {
         this.ready = ready;
     }
 
-    public AutoFiltering getAuto() {
-        return auto;
-    }
-
-    public void setAuto(AutoFiltering auto) {
-        this.auto = auto;
-    }
-
     @Override
     public String toString() {
-        return "OrderFiltering{" +
-                "userId=" + userId +
-                ", clientId=" + clientId +
-                ", manufactureId=" + manufactureId +
-                ", modelId=" + modelId +
-                ", engineId=" + engineId +
-                ", ready=" + ready +
-                '}';
+        final StringBuffer sb = new StringBuffer("OrderFiltering{");
+        sb.append("userId=").append(userId);
+        sb.append(", clientId=").append(clientId);
+        sb.append(", modelId=").append(modelId);
+        sb.append(", engineId=").append(engineId);
+        sb.append(", ready=").append(ready);
+        sb.append('}');
+        return sb.toString();
     }
 }
 

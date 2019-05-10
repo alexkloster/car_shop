@@ -23,19 +23,28 @@ $('#clientSelect').on('change', function () {
 
 });
 
-$('#modelSelect').on('change', function () {
+$('#autoModelSelect').on('change', function () {
 
-    var capitalization = document.getElementById("modelSelect");
+    var combo = document.getElementById("autoModelSelect");
 
-    $("#modelId").val(capitalization.checked);
+    $("#autoModelId").val(combo.options[combo.selectedIndex].value);
+
+
+
+});$('#autoEngineSelect').on('change', function () {
+
+    var combo = document.getElementById("autoEngineSelect");
+
+    $("#autoEngineId").val(combo.options[combo.selectedIndex].value);
 
 });
+
 
 $('#readySelect').on('change', function () {
 
     var capitalization = document.getElementById("readySelect");
 
-    $("#readyFilter").val(capitalization.checked);
+    $("#readyFilter").val(combo.options[combo.selectedIndex].value);
 
 });
 
@@ -70,89 +79,6 @@ $('#readySelect1').on('change', function () {
         },
 
         timeout: 120000
-    });
-
-});
-
-$('#depositTypeSelect').on('change', function () {
-
-    var combo = document.getElementById("depositTypeSelect");
-
-    var type = combo.options[combo.selectedIndex].value;
-
-    $("#depositType").val(type);
-    $.ajax({
-
-        url: "/getDepositType/" + type,
-        type: "GET",
-
-        contentType: 'application/json; charset=utf-8',
-        success: function (resultData) {
-            $("#depositSumm").attr({
-                "min": resultData.minSum,
-                "data-suffix": resultData.currency.currencyName
-            });
-
-            $("#depositTerm").attr({
-                "min": resultData.term,
-                "step": resultData.term
-            });
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-        },
-
-        timeout: 120000
-    });
-
-});
-
-$('[data-toggle="modal"]').on('click', function (e) {
-    var $target = $(e.target);
-    var depositId = $target.data("val");
-
-    $.ajax({
-        url: "/getDepositInfo/" + depositId,
-        type: "GET",
-
-        contentType: 'application/json; charset=utf-8',
-        success: function (deposit) {
-            $("#depositDescription").text(deposit.depositType.description);
-            $("#depositCurrency").text(deposit.depositType.currency.currencyName);
-            $("#depositPercentage").text(deposit.depositType.percentage);
-            $("#depositTerm").text(deposit.depositType.term);
-            $("#depositSum").text(deposit.depositType.minSum);
-            $("#deposiеCapitalization").text(deposit.depositType.capitalization);
-            var momentDate = moment(deposit.startDate, 'YYYY-MM-DD HH:mm:ss.S');
-            var startDate = momentDate.toDate();
-
-            momentDate = moment(deposit.endDate, 'YYYY-MM-DD HH:mm:ss.S');
-            var endDate = momentDate.toDate();
-
-            $("#depositClient").text(deposit.client.name);
-            $("#depositUser").text(deposit.user.name);
-            $("#depositStart").text(formatDate(startDate));
-            $("#depositEnd").text(formatDate(endDate));
-            $("#depositCurSum").text(deposit.sum);
-        }
-    });
-    $.ajax({
-        url: "/calculateCurrentProfit/" + depositId,
-        type: "GET",
-
-        contentType: 'application/json; charset=utf-8',
-        success: function (profit) {
-            $("#depositCurrentProfit").text(profit);
-        }
-    });
-
-    $.ajax({
-        url: "/calculateProfit/" + depositId,
-        type: "GET",
-
-        contentType: 'application/json; charset=utf-8',
-        success: function (profit) {
-            $("#depositProfit").text(profit);
-        }
     });
 
 });

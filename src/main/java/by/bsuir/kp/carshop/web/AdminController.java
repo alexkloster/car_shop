@@ -86,7 +86,7 @@ public class AdminController {
     public String statistic(HttpServletRequest request, Model model) {
         request.setAttribute("orders", orderService.getAllOrders());
         request.setAttribute("users", userService.getAllUsers());
-        filteringOptions(request, model);
+        filteringOptions(request, model, new OrderFiltering());
 
         return "adminpage";
     }
@@ -102,15 +102,14 @@ public class AdminController {
         System.out.println(filtering);
 
 
-        request.setAttribute("orders", orderService.getAllOrders());
-        filteringOptions(request, model);
+        filteringOptions(request, model, filtering);
 
 
         return "adminpage";
     }
 
 
-    private void filteringOptions(HttpServletRequest request, Model model) {
+    private void filteringOptions(HttpServletRequest request, Model model, OrderFiltering orderFiltering) {
         request.setAttribute("users", userService.getAllUsers());
         request.setAttribute("clients", clientService.getAllClients());
         request.setAttribute("manufactures", manufactureService.getAllManufactures());
@@ -119,7 +118,7 @@ public class AdminController {
 
         request.setAttribute("mode", "MODE_STAT");
 
-        model.addAttribute("filtering", new OrderFiltering());
+        model.addAttribute("filtering", orderFiltering);
     }
 
 

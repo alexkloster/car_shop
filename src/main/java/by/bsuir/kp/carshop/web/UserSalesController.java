@@ -1,6 +1,7 @@
 package by.bsuir.kp.carshop.web;
 
 import by.bsuir.kp.carshop.ChartData;
+import by.bsuir.kp.carshop.filtering.AutoFiltering;
 import by.bsuir.kp.carshop.filtering.OrderFiltering;
 import by.bsuir.kp.carshop.sevice.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,33 +41,49 @@ public class UserSalesController {
     @RequestMapping("/purchase")
     public String purchases(HttpServletRequest request, Model model) {
         request.setAttribute("orders", orderService.getAllOrders());
-        filteringOptions(request, model);
+
+        filteringOptions(request, model, new OrderFiltering());
+        return "userSales";
+    }
+
+    @RequestMapping("/filter-order")
+    public String statistic(@ModelAttribute OrderFiltering filtering,
+                            HttpServletRequest request, Model model) {
+        request.setAttribute("mode", "MODE_STAT");
+        request.setAttribute("orders", orderService.filterOrders(filtering));
+
+        System.out.println(filtering);
+
+
+        filteringOptions(request, model, filtering);
+
+
         return "userSales";
     }
 
     @GetMapping("/getModelStatistic")
     @ResponseBody
-    public ChartData modelInfo(){
+    public ChartData modelInfo() {
 
         return orderService.getModelData(userService.getCurrentUser());
     }
 
     @GetMapping("/getEngineStatistic")
     @ResponseBody
-    public ChartData engineInfo(){
+    public ChartData engineInfo() {
 
         return orderService.getEngineData(userService.getCurrentUser());
     }
 
     @GetMapping("/getClientStatistic")
     @ResponseBody
-    public ChartData clientInfo(){
+    public ChartData clientInfo() {
 
         return orderService.getClientData(userService.getCurrentUser());
     }
 
 
-    private void filteringOptions(HttpServletRequest request, Model model) {
+    private void filteringOptions(HttpServletRequest request, Model model, OrderFiltering orderFiltering) {
         request.setAttribute("models", modelService.getAllModels());
         request.setAttribute("clients", clientService.getAllClients());
         request.setAttribute("manufactures", manufactureService.getAllManufactures());
@@ -74,9 +91,10 @@ public class UserSalesController {
 
         request.setAttribute("mode", "MODE_STAT");
 
-        model.addAttribute("filtering", new OrderFiltering());
-    }
 
+        model.addAttribute("filtering", orderFiltering);
+
+    }
 
 
 }

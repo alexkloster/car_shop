@@ -60,7 +60,7 @@
                                 <a class="nav-link" href="/statistic">Статистика</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contacts">Контакты</a>
+                                <a class="nav-link" href="">Контакты</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/exit">Выйти</a>
@@ -250,8 +250,10 @@
                                                 <select class="form-control" id="clientSelect">
                                                     <option></option>
                                                     <c:forEach var="client" items="${clients}">
-                                                        <option value="${client.id}"><c:out
-                                                                value="${client.name}"/></option>
+                                                        <option value="${client.id}"<c:if
+                                                                test="${filtering.clientId == client.id}"> selected = 'selected' </c:if> >
+                                                            <c:out
+                                                                    value="${client.name}"/></option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -269,20 +271,19 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label class="control-label col-lg-12">Модель</label>
-                                            <form:input type="hidden" path="filtering.auto.model.name"
+                                            <form:input type="hidden" path="filtering.modelId"
                                                         name="autoModelId"
                                                         id="autoModelId"/>
-                                            <form:input type="hidden" path="filtering.auto.model.manufactureName"
-                                                        name="autoManId"
-                                                        id="autoManId"/>
                                             <div class="row">
                                                 <div class="col-lg-10">
                                                     <select class="form-control" id="autoModelSelect">
                                                         <option value="${model.id}"><c:out
                                                                 value="${model.manufacture.name} ${model.name}"/></option>
                                                         <c:forEach var="model" items="${models}">
-                                                            <option value="${model.id}"><c:out
-                                                                    value="${model.manufacture.name} ${model.name}"/></option>
+                                                            <option value="${model.id}" <c:if
+                                                                    test="${filtering.modelId == model.id}"> selected = 'selected' </c:if> >
+                                                                <c:out
+                                                                        value="${model.manufacture.name} ${model.name}"/></option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -296,8 +297,8 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label class="control-label col-lg-12">Двигатель</label>
-                                            <form:input type="hidden" path="filtering.auto.engine.name" name="engineId"
-                                                        id="engineId"/>
+                                            <form:input type="hidden" path="filtering.engineId" name="autoEngineId"
+                                                        id="autoEngineId"/>
 
                                             <div class="row">
                                                 <div class="col-lg-10">
@@ -305,8 +306,10 @@
                                                         <option value="${car.engine.id}"><c:out
                                                                 value="${car.engine.name}"/></option>
                                                         <c:forEach var="engine" items="${engines}">
-                                                            <option value="${engine.id}"><c:out
-                                                                    value="${engine.name}"/></option>
+                                                            <option value="${engine.id}" <c:if
+                                                                    test="${filtering.engineId == engine.id}"> selected = 'selected' </c:if> >
+                                                                <c:out
+                                                                        value="${engine.name}"/></option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -420,7 +423,7 @@
                                                                       href="/welcome">4 Колеса</a>»</span>
                 </div>
                 <div class="foo_info">
-                    Лицензия  N31 от 28 мая 2013 года на осуществление
+                    Лицензия N31 от 28 мая 2013 года на осуществление
                     торговой деятельности. <br>
                     <br>
                 </div>

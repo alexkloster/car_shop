@@ -53,7 +53,7 @@
                                         <a class="nav-link" href="">О нас</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/contacts">Контакты</a>
+                                        <a class="nav-link" href="">Контакты</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/login">Войти</a>
@@ -95,7 +95,7 @@
                                         <a class="nav-link" href="/purchase">Покупки</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/contacts">Контакты</a>
+                                        <a class="nav-link" href="">Контакты</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/exit">Выйти</a>
@@ -131,7 +131,7 @@
                                         <a class="nav-link" href="/sales">Статистика</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/contacts">Контакты</a>
+                                        <a class="nav-link" href="">Контакты</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/exit">Выйти</a>
